@@ -1,0 +1,13 @@
+{
+    "commitPrefix": {
+        "separator": " ",
+        "prefixes": {}
+    },
+    "branchPrefix": {
+        "separator": "",
+        "validator": "^\\d+$",
+        "prefixes": {
+            "S": "Story"
+        }
+    }
+}

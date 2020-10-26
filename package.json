@@ -1,0 +1,23 @@
+{
+  "name": "gittey",
+  "version": "1.0.0",
+  "description": "Git utils for enhanced worflows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git",
+    "utilities",
+    "helpers"
+  ],
+  "author": "Chris Stead",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "command-line-args": "^5.1.1",
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "matchlight": "^2.1.0"
+  }
+}
