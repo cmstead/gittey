@@ -4,6 +4,7 @@ const definitions = [
     { name: "configure-branch-annotations", type: Boolean },
     { name: "clear-configuration", type: Boolean },
     { name: "branch-prefixes", type: Boolean },
+    { name: "commit-prefixes", type: Boolean },
     { name: "new-branch", type: Boolean },
     { name: "commit", type: Boolean }
 ];

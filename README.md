@@ -26,13 +26,14 @@ Coming and current features:
 
 - [x] Branch annotations
     - [x] Branch prefixing
-    - [x] Branch key visualization
+    - [x] Branch annotation key visualization
     - [x] Branch name validation
 - [ ] Local branch cleanup
     - [ ] Easy merge and delete of a branch
     - [ ] Easy delete for multiple local branches
 - [ ] Commit prefix annotations
-    - [ ] Provide canned Arlo-style annotations
+    - [x] Provide canned Arlo-style annotations
+    - [x] Commit message annotation key visualization
     - [ ] Custom annotation prefixing
 - [ ] Pre-hook hooks
     - [ ] Pre-push hook to allow actions which require a commit (e.g. version bumps)
@@ -48,5 +49,7 @@ Current options at the command line for Gittey:
 
 - `--configure-branch-annotations` - Configure branch prefix annotations
 - `--clear-configuration` - Clear current configuration
-- `--branch-prefixes` - Display a table of branch prefixes and descriptions
+- `--branch-prefixes` - Display a table of branch annotation prefixes and descriptions
+- `--commit-prefixes` - Display a table of commit message annotation prefixes and descriptions
 - `--new-branch` - Create a new branch using the annotation rules
+- `--commit` - Create a new commit with an annotation for what was done

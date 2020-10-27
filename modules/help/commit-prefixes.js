@@ -16,7 +16,7 @@ function displayBranchPrefixes() {
     const prefixData = collectPrefixData(config.commitPrefix.prefixes);
 
     console.log();
-    console.log(chalk.underline('Branch Name Prefixes:'));
+    console.log(chalk.underline('Commit Message Prefixes:'));
     console.log();
     console.table(prefixData);
 }
