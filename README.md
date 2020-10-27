@@ -2,6 +2,26 @@
 
 Gittey is a Git tool to help simplify the task of unifying a team git strategy. The vision of this tool is to augment the Git work done at the command line, rather than simply wrapping it.
 
+## Installation ##
+
+Make sure you have Node.js installed, and run the following command:
+
+```
+npm install -g gittey
+```
+
+## Setup ##
+
+After Gittey is installed, run the following command in a project to add a Gittey configuration:
+
+```
+gittey --configure-branch-annotations
+```
+
+This will walk you though configuring branch annotations for Gittey and save a configuration file to your project. Be sure to commit the configuration so your team can use it too.
+
+## Features ##
+
 Coming and current features:
 
 - [x] Branch annotations
