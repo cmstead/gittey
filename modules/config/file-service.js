@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function readJsonFile(filePath) {
     try {
         const configString = fs.readFileSync(filePath, { encoding: 'utf8' });

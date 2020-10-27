@@ -4,7 +4,8 @@ const definitions = [
     { name: "configure-branch-annotations", type: Boolean },
     { name: "clear-configuration", type: Boolean },
     { name: "branch-prefixes", type: Boolean },
-    { name: "new-branch", type: Boolean }
+    { name: "new-branch", type: Boolean },
+    { name: "commit", type: Boolean }
 ];
 
 module.exports = commandLineArgs(definitions);

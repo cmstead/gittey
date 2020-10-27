@@ -3,12 +3,15 @@ const { match } = require('matchlight');
 const { configureBranchPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
 const cliOptions = require('./modules/config/cli-options');
 const branchPrefixes = require('./modules/help/branch-prefixes');
-const brahcService = require('./modules/branch/branch-service');
+const commitService = require('./modules/commit/commit-service');
 const branchService = require('./modules/branch/branch-service');
 
 match(cliOptions, function (onCase, onDefault) {
     onCase({ ['new-branch']: true },
         () => branchService.createBranch());
+
+    onCase({ ['commit']: true },
+        () => commitService.createCommit());
 
     onCase({ ['configure-branch-annotations']: true },
         () => configureBranchPrefixes()

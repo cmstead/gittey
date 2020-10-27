@@ -6,6 +6,17 @@
     },
     "commitPrefix": {
         "separator": " ",
-        "prefixes": {}
+        "validator": ".{,50}",
+        "prefixes": {
+            "F": "Feature",
+            "B": "Bug fix",
+            "r": "Provable (manual) refactoring",
+            "!!!": "Non-provable refactoring",
+            "a": "Automated formatting",
+            "c": "Comments only (added or deleted)",
+            "d": "Developer documentation (non-user facing)",
+            "e": "Environment (non-code) changes (for development)",
+            "t": "Test only"
+        }
     }
 }
