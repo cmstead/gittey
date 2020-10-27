@@ -1,17 +1,21 @@
 const { match } = require('matchlight');
 
-const configureGittey = require('./modules/setup/configure-gittey');
+const { configureBranchPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
 const cliOptions = require('./modules/config/cli-options');
 const branchPrefixes = require('./modules/help/branch-prefixes');
+const brahcService = require('./modules/branch/branch-service');
+const branchService = require('./modules/branch/branch-service');
 
 match(cliOptions, function (onCase, onDefault) {
-    onCase({ configure: true },
-        () => configureGittey
-            .configureBranchPrefixes()
-            .then(() => console.log('done?')));
+    onCase({ ['new-branch']: true },
+        () => branchService.createBranch());
+
+    onCase({ ['configure']: true },
+        () => configureBranchPrefixes()
+            .then(() => console.log('Branch prefixes configured.')));
 
     onCase({ ['clear-configuration']: true },
-        () => configureGittey.clearConfig());
+        () => clearConfig());
 
     onCase({ ['branch-prefixes']: true },
         () => branchPrefixes.displayBranchPrefixes());
