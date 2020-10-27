@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "description": "Git utils for enhanced worflows",
   "main": "index.js",
+  "bin": {
+    "gittey": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cmstead/gittey.git"
