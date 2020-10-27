@@ -1,16 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 
-const globalConfigPath = path.join(__dirname, '..', '..', 'global-config.json');
+const projectConfigPath = path.join(process.cwd(), 'gittey-config.json');
 const emptyConfigPath = path.join(__dirname, '..', '..', 'default-configurations', 'empty-config.json');
 const arloNotationPath = path.join(__dirname, '..', '..', 'default-configurations', 'arlo-notation.json');
 
 function readJsonFile(filePath) {
-    try{
+    try {
         const configString = fs.readFileSync(filePath, { encoding: 'utf8' });
         return JSON.parse(configString);
-    } catch(e) {
+    } catch (e) {
         console.log(`Unable to read file at path "${filePath}"`, e);
+    }
+}
+
+function writeJsonFile(filePath, json) {
+    try {
+        const configString = JSON.stringify(json, null, 4);
+        fs.writeFileSync(filePath, configString);
+    } catch (e) {
+        console.log(`Unable to write to file path: "${filePath}"`, e)
     }
 }
 
@@ -22,17 +31,28 @@ function readEmptyConfig() {
     return readJsonFile(emptyConfigPath);
 }
 
+function isFile(filePath) {
+    try {
+        return fs.lstatSync(filePath).isFile();
+    } catch (e) {
+        return false;
+    }
+}
+
 function readConfig() {
-    return readJsonFile(globalConfigPath);
+    if(isFile(projectConfigPath)) {
+        return readJsonFile(projectConfigPath);
+    } else {
+        const emptyConfig = readEmptyConfig();
+
+        writeJsonFile(projectConfigPath, emptyConfig);
+
+        return emptyConfig;
+    }
 }
 
 function writeConfig(config) {
-    try{
-        const configString = JSON.stringify(config, null, 4);
-        fs.writeFileSync(globalConfigPath, configString);
-    } catch (e) {
-        console.log('Unable to write global config file.', e);
-    }
+    writeJsonFile(projectConfigPath, config);
 }
 
 module.exports = {

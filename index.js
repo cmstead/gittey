@@ -10,7 +10,7 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['new-branch']: true },
         () => branchService.createBranch());
 
-    onCase({ ['configure']: true },
+    onCase({ ['configure-branch-annotations']: true },
         () => configureBranchPrefixes()
             .then(() => console.log('Branch prefixes configured.')));
 

@@ -1,0 +1,17 @@
+{
+    "branchPrefix": {
+        "separator": "",
+        "validator": "",
+        "prefixes": {
+            "S": "Story",
+            "T": "Task",
+            "U": "Unexpected/Unplanned",
+            "B": "Bug, issue found after ticket close",
+            "D": "Defect, issue found before ticket close"
+        }
+    },
+    "commitPrefix": {
+        "separator": " ",
+        "prefixes": {}
+    }
+}

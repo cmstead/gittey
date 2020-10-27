@@ -10,7 +10,7 @@ function getPrefixSetup() {
             },
             {
                 name: 'prefixValidator',
-                message: 'Prefix validation pattern (regex) [enter for none]'
+                message: 'Prefix validation pattern (regex only) [enter for none]'
             }
         ]);
 }
