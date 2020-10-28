@@ -3,6 +3,8 @@ const { promisify } = require('util');
 
 const inquirer = require('inquirer');
 
+const { createValidator } = require('../shared/shared');
+
 function getPrefixOptions(branchPrefix) {
     return Object.keys(branchPrefix.prefixes)
         .map(function (key) {
@@ -32,9 +34,7 @@ function getBranchInfo(branchPrefix) {
         {
             name: 'branchName',
             message: 'Branch name:',
-            validate: (branchName) => {
-                return validatorPattern.test(branchName);
-            }
+            validate: createValidator(validatorPattern)
         }
     ]);
 }

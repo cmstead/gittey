@@ -1,18 +1,15 @@
 {
     "branchPrefix": {
-        "separator": "",
+        "separator": " ",
         "validator": "",
         "prefixes": {
-            "S": "Story",
-            "T": "Task",
-            "U": "Unexpected/Unplanned",
-            "B": "Bug, issue found after ticket close",
-            "D": "Defect, issue found before ticket close"
+            "[Ver]": "New Version",
+            "[Bug]": "Bug Fix"
         }
     },
     "commitPrefix": {
         "separator": " ",
-        "validator": ".{0,45}",
+        "validator": ".{1,45}",
         "prefixes": {
             "F": "Feature",
             "B": "Bug fix",

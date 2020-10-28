@@ -3,6 +3,8 @@ const { promisify } = require('util');
 
 const inquirer = require('inquirer');
 
+const { createValidator } = require('../shared/shared');
+
 function getPrefixOptions(commitPrefix) {
     return Object.keys(commitPrefix.prefixes)
         .map(function (key) {
@@ -32,9 +34,7 @@ function getCommitInfo(commitPrefix) {
         {
             name: 'commitMessage',
             message: 'Commit message:',
-            validate: (commitMessage) => {
-                return validatorPattern.test(commitMessage);
-            }
+            validate: createValidator(validatorPattern)
         }
     ]);
 }

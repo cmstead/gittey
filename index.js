@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 const { match } = require('matchlight');
 
 const { configureBranchPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
