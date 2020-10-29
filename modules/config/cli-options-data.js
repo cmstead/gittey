@@ -31,7 +31,13 @@ module.exports = [
     },
     { 
         name: "help",
-        description: "Help info",
+        description: "Display help info",
+        type: Boolean
+    },
+    {
+        name: 'version',
+        alias: 'v',
+        description: 'Display current version',
         type: Boolean
     }
 ]

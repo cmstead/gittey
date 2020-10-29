@@ -2,6 +2,8 @@
 
 const { match } = require('matchlight');
 
+const package = require('./package.json');
+
 const { configureBranchPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
 const cliOptions = require('./modules/config/cli-options');
 const branchPrefixes = require('./modules/help/branch-prefixes');
@@ -9,6 +11,7 @@ const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const branchService = require('./modules/branch/branch-service');
 const helpOutput = require('./modules/help/help-output');
+
 
 match(cliOptions, function (onCase, onDefault) {
     onCase({ ['new-branch']: true },
@@ -35,6 +38,8 @@ match(cliOptions, function (onCase, onDefault) {
 
     onCase({ ['help']: true },
         () => helpOutput.display());
+
+    onCase({ ['version']: true }, () => console.log(`v${package.version}`));
 
     onDefault(() => {
         console.log('Gittey: unknown command, sorry.');
