@@ -35,6 +35,10 @@ Coming and current features:
     - [x] Provide canned Arlo-style annotations
     - [x] Commit message annotation key visualization
     - [ ] Custom annotation prefixing
+- [ ] Merge Helper
+    - [ ] Merge into current branch
+    - [ ] Merge into another branch
+    - [ ] Merge into new branch
 - [ ] Pre-hook hooks
     - [ ] Pre-push hook to allow actions which require a commit (e.g. version bumps)
     - [ ] Allow flag-driven hook disabling
@@ -42,6 +46,7 @@ Coming and current features:
     - [x] Configure branch prefix annotations
     - [x] Clear Gittey configuration
     - [ ] Configure commit prefix annotations
+- [x] Help/Man information
 
 ## CLI Options ##
 

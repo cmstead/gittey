@@ -8,6 +8,7 @@ const branchPrefixes = require('./modules/help/branch-prefixes');
 const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const branchService = require('./modules/branch/branch-service');
+const helpOutput = require('./modules/help/help-output');
 
 match(cliOptions, function (onCase, onDefault) {
     onCase({ ['new-branch']: true },
@@ -20,7 +21,7 @@ match(cliOptions, function (onCase, onDefault) {
         () => configureBranchPrefixes()
             .then(() => console.log('Branch prefixes configured.')));
 
-    onCase({ ['clear-configuration']: true },
+    onCase({ ['reset-configuration']: true },
         () => clearConfig());
 
     onCase({ ['branch-prefixes']: true },
@@ -29,5 +30,14 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['commit-prefixes']: true },
         () => commitPrefixes.displayBranchPrefixes());
 
-    onDefault(() => console.log('Gittey: unknown command, sorry.'));
+    onCase({ ['commit-prefixes']: true },
+        () => commitPrefixes.displayBranchPrefixes());
+
+    onCase({ ['help']: true },
+        () => helpOutput.display());
+
+    onDefault(() => {
+        console.log('Gittey: unknown command, sorry.');
+        process.exit(1);
+    });
 });

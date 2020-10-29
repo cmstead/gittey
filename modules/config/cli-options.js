@@ -1,12 +1,7 @@
 const commandLineArgs = require('command-line-args');
 
-const definitions = [
-    { name: "configure-branch-annotations", type: Boolean },
-    { name: "clear-configuration", type: Boolean },
-    { name: "branch-prefixes", type: Boolean },
-    { name: "commit-prefixes", type: Boolean },
-    { name: "new-branch", type: Boolean },
-    { name: "commit", type: Boolean }
-];
+const options = require('./cli-options-data');
+
+const definitions = options;
 
 module.exports = commandLineArgs(definitions);
