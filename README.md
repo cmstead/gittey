@@ -28,23 +28,24 @@ Coming and current features:
     - [x] Branch prefixing
     - [x] Branch annotation key visualization
     - [x] Branch name validation
-- [ ] Local branch cleanup
-    - [ ] Easy merge and delete of a branch
+- [ ] Local branch tooling
+    - [ ] Easy single-branch delete
     - [ ] Easy delete for multiple local branches
-- [ ] Commit prefix annotations
-    - [x] Provide canned Arlo-style annotations
-    - [x] Commit message annotation key visualization
-    - [ ] Custom annotation prefixing
-- [ ] Merge Helper
     - [ ] Merge into current branch
     - [ ] Merge into another branch
     - [ ] Merge into new branch
+- [ ] Commit prefix annotations
+    - [x] Provide canned Arlo-style annotations
+    - [x] Commit message annotation key visualization
+    - [ ] Custom commit annotation prefixing
 - [ ] Pre-hook hooks
     - [ ] Pre-push hook to allow actions which require a commit (e.g. version bumps)
     - [ ] Allow flag-driven hook disabling
 - [ ] Configuration
     - [x] Configure branch prefix annotations
     - [x] Clear Gittey configuration
+    - [ ] Only clear branch annotation configuration
+    - [ ] Only clear commit annotation configuration
     - [ ] Configure commit prefix annotations
 - [x] Help/Man information
 
