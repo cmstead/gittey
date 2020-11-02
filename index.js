@@ -27,6 +27,9 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['reset-configuration']: true },
         () => clearConfig());
 
+    onCase({ ['delete-branch']: true },
+        () => branchService.deleteBranch());
+
     onCase({ ['branch-prefixes']: true },
         () => branchPrefixes.displayBranchPrefixes());
 

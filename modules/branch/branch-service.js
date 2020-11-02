@@ -1,4 +1,5 @@
 const { buildBranchName, createNewBranch, getBranchInfo } = require('./create-branch');
+const { getBranchName, deleteBranchByName } = require('./delete-branch');
 const configService = require('../config/config-service');
 
 function createBranch() {
@@ -18,6 +19,15 @@ function createBranch() {
         });
 }
 
+function deleteBranch() {
+    return getBranchName()
+        .then(branchName => deleteBranchByName(branchName))
+        .catch(function(error){
+            console.log('Unable to delete branch', error);
+        });
+}
+
 module.exports = {
-    createBranch
+    createBranch,
+    deleteBranch
 };

@@ -1,10 +1,11 @@
 {
     "branchPrefix": {
-        "separator": " ",
+        "separator": "-",
         "validator": "",
         "prefixes": {
-            "[Ver]": "New Version",
-            "[Bug]": "Bug Fix"
+            "Bug": "Bug Fix",
+            "Fea": "New Feature",
+            "Ver": "New Version"
         }
     },
     "commitPrefix": {

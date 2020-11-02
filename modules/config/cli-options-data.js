@@ -9,6 +9,11 @@ module.exports = [
         description: "Reset configuration to default settings",
         type: Boolean
     },
+    {
+        name: "delete-branch",
+        description: "Delete a branch",
+        type: Boolean
+    },
     { 
         name: "branch-prefixes",
         description: "Display branch prefixes and descriptions",
@@ -31,6 +36,7 @@ module.exports = [
     },
     { 
         name: "help",
+        alias: 'h',
         description: "Display help info",
         type: Boolean
     },

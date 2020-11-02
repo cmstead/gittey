@@ -43,10 +43,10 @@ Coming and current features:
     - [ ] Allow flag-driven hook disabling
 - [ ] Configuration
     - [x] Configure branch prefix annotations
-    - [x] Clear Gittey configuration
-    - [ ] Only clear branch annotation configuration
-    - [ ] Only clear commit annotation configuration
     - [ ] Configure commit prefix annotations
+    - [x] Reset Gittey configuration
+    - [ ] Only reset branch annotation configuration
+    - [ ] Only reset commit annotation configuration
 - [x] Help/Man information
 
 ## CLI Options ##
