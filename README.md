@@ -29,12 +29,13 @@ Coming and current features:
     - [x] Branch annotation key visualization
     - [x] Branch name validation
 - [ ] Local branch tooling
-    - [ ] Easy single-branch delete
+    - [x] Easy single-branch delete
     - [ ] Easy delete for multiple local branches
     - [ ] Merge into current branch
     - [ ] Merge into another branch
     - [ ] Merge into new branch
 - [ ] Commit prefix annotations
+    - [X] Check if changes have not been added, offer to add them
     - [x] Provide canned Arlo-style annotations
     - [x] Commit message annotation key visualization
     - [ ] Custom commit annotation prefixing

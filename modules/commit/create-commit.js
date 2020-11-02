@@ -5,6 +5,8 @@ const inquirer = require('inquirer');
 
 const { createValidator } = require('../shared/shared');
 
+const exec = promisify(childProcess.exec);
+
 function getPrefixOptions(commitPrefix) {
     return Object.keys(commitPrefix.prefixes)
         .map(function (key) {
@@ -42,13 +44,55 @@ function getCommitInfo(commitPrefix) {
 function createNewCommit(commitMessage) {
     const gitCommand = `git commit -m "${commitMessage}"`;
 
-    return promisify(childProcess.exec)
+    return exec
         .call(null, gitCommand)
         .then(() => commitMessage);
 }
 
+function areThereUnstagedFiles() {
+    const gitCommand = 'git status --porcelain';
+
+    return exec(gitCommand)
+        .then(function(result){
+            const fileStatuses = result.stdout.split('\n')
+
+            return fileStatuses.find(value => /^.[^\s]/.test(value)) !== null;
+        })
+        .catch(function(error){
+            console.log('Unable to check for unstaged files', error);
+
+            return false;
+        });
+}
+
+function verifyUserWantsToStageFiles() {
+    return inquirer.prompt([
+        {
+            name: 'stageFiles',
+            message: 'There are unstaged files, add them? [y/N]',
+            default: 'n',
+        	validate: (stageFiles) => {
+                return stageFiles.toLowerCase() === 'y'
+                    || stageFiles.toLowerCase() === 'n';
+            }
+        }
+    ])
+    .then(function(result){
+        return result.stageFiles;
+    });
+}
+
+function stageFiles() {
+    const gitCommand = 'git add --all';
+
+    return exec(gitCommand);
+}
+
 module.exports = {
+    areThereUnstagedFiles,
     buildCommitMessage,
     createNewCommit,
-    getCommitInfo
+    getCommitInfo,
+    stageFiles,
+    verifyUserWantsToStageFiles
 }
