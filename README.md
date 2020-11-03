@@ -30,7 +30,7 @@ Coming and current features:
     - [x] Branch name validation
 - [ ] Local branch tooling
     - [x] Easy single-branch delete
-    - [ ] Easy delete for multiple local branches (prune)
+    - [x] Easy delete for multiple local branches (prune)
     - [ ] Merge into current branch
     - [ ] Merge into another branch
     - [ ] Merge into new branch
