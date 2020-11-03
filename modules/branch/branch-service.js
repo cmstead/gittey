@@ -1,5 +1,5 @@
 const { buildBranchName, createNewBranch, getBranchInfo } = require('./create-branch');
-const { getBranchName, deleteBranchByName } = require('./delete-branch');
+const { getBranchName, deleteBranchByName, pruneBranches } = require('./delete-branch');
 const configService = require('../config/config-service');
 
 function createBranch() {
@@ -29,5 +29,6 @@ function deleteBranch() {
 
 module.exports = {
     createBranch,
-    deleteBranch
+    deleteBranch,
+    pruneBranches
 };

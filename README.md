@@ -30,7 +30,7 @@ Coming and current features:
     - [x] Branch name validation
 - [ ] Local branch tooling
     - [x] Easy single-branch delete
-    - [ ] Easy delete for multiple local branches
+    - [ ] Easy delete for multiple local branches (prune)
     - [ ] Merge into current branch
     - [ ] Merge into another branch
     - [ ] Merge into new branch
@@ -39,9 +39,10 @@ Coming and current features:
     - [x] Provide canned Arlo-style annotations
     - [x] Commit message annotation key visualization
     - [ ] Custom commit annotation prefixing
-- [ ] Pre-hook hooks
-    - [ ] Pre-push hook to allow actions which require a commit (e.g. version bumps)
-    - [ ] Allow flag-driven hook disabling
+- [ ] Custom git aliases
+    - [ ] Runnable aliases with `gittey --run <aliasName>`
+    - [ ] Add new aliases via command line
+    - [ ] Remove aliases via command line
 - [ ] Configuration
     - [x] Configure branch prefix annotations
     - [ ] Configure commit prefix annotations
@@ -54,9 +55,13 @@ Coming and current features:
 
 Current options at the command line for Gittey:
 
-- `--configure-branch-annotations` - Configure branch prefix annotations
-- `--clear-configuration` - Clear current configuration
-- `--branch-prefixes` - Display a table of branch annotation prefixes and descriptions
-- `--commit-prefixes` - Display a table of commit message annotation prefixes and descriptions
-- `--new-branch` - Create a new branch using the annotation rules
-- `--commit` - Create a new commit with an annotation for what was done
+ - `--configure-branch-annotations` - Create branch annotation prefixes
+ - `--reset-configuration` - Reset configuration to default settings
+ - `--delete-branch` - Delete a branch
+ - `--prune-branches` - Menued branch cleanup
+ - `--branch-prefixes` - Display branch prefixes and descriptions
+ - `--commit-prefixes` - Display commit prefixes and descriptions
+ - `--new-branch` - Create a new branch using defined configuration
+ - `--commit` - Create a new branch using defined configuration
+ - `-h, --help` - Display help info
+ - `-v, --version` - Display current version

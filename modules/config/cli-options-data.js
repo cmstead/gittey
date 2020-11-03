@@ -14,6 +14,11 @@ module.exports = [
         description: "Delete a branch",
         type: Boolean
     },
+    {
+        name: "prune-branches",
+        description: "Menued branch cleanup",
+        type: Boolean
+    },
     { 
         name: "branch-prefixes",
         description: "Display branch prefixes and descriptions",

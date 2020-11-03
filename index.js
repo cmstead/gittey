@@ -30,6 +30,9 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['delete-branch']: true },
         () => branchService.deleteBranch());
 
+    onCase({ ['prune-branches']: true },
+        () => branchService.pruneBranches());
+
     onCase({ ['branch-prefixes']: true },
         () => branchPrefixes.displayBranchPrefixes());
 

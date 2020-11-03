@@ -6,11 +6,13 @@ const exec = promisify(childProcess.exec);
 
 function readBranchNames() {
     const branchCommand = 'git branch';
+    const branchPrefixPattern = /^\s\s/;
 
     return exec(branchCommand)
         .then(result => {
             return result.stdout.split('\n')
-                .map(branchName => branchName.replace(/^\*|\s\s/, ''));
+                .filter(branchName => branchPrefixPattern.test(branchName))
+                .map(branchName => branchName.replace(branchPrefixPattern, ''));
         });
 }
 
@@ -37,12 +39,16 @@ function getBranchName() {
 }
 
 function deleteBranchByName(branchName) {
-    const gitCommand = `git branch -D ${branchName}`;
+    deleteBranches([branchName]);
+}
 
-    inquirer.prompt([
+function deleteBranches([...branchNames]) {
+    const gitCommand = `git branch -D ${branchNames.join(' ')}`;
+
+    return inquirer.prompt([
         {
             name: 'deleteOk',
-            message: `The branch ${branchName} will be permanently deleted! [y/N]`,
+            message: `The branch(s) ${branchNames.join(', ')} will be permanently deleted! [y/N]`,
             default: 'n',
         	validate: (deleteOk) => {
                 return deleteOk.toLowerCase() === 'y'
@@ -60,7 +66,28 @@ function deleteBranchByName(branchName) {
 
 }
 
+function pruneBranches() {
+    return readBranchNames()
+        .then(function(branchNames){
+            return inquirer.prompt([
+                {
+                    name: 'selectedBranches',
+                    type: 'checkbox',
+                    message: 'Choose branches to delete',
+                    choices: branchNames
+                }
+            ]);
+        })
+        .then(function(result){
+            return deleteBranches(result.selectedBranches);
+        })
+        .catch(function(error){
+            console.log('Unable to delete selected branches', error);
+        });
+}
+
 module.exports = {
+    deleteBranchByName,
     getBranchName,
-    deleteBranchByName
+    pruneBranches
 }
