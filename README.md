@@ -31,9 +31,10 @@ Coming and current features:
 - [ ] Local branch tooling
     - [x] Easy single-branch delete
     - [x] Easy delete for multiple local branches (prune)
+    - [ ] Update current branch with latest master/main
     - [ ] Merge into current branch
-    - [ ] Merge into another branch
-    - [ ] Merge into new branch
+    - [ ] Merge current branch into another
+    - [ ] Merge current branch and another branch into a temp branch
 - [ ] Commit prefix annotations
     - [X] Check if changes have not been added, offer to add them
     - [x] Provide canned Arlo-style annotations

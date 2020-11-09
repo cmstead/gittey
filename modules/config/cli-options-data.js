@@ -5,6 +5,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "configure-commit-annotations",
+        description: "Create commit annotation prefixes",
+        type: Boolean
+    },
+    {
         name: "reset-configuration",
         description: "Reset configuration to default settings",
         type: Boolean
@@ -17,6 +22,11 @@ module.exports = [
     {
         name: "prune-branches",
         description: "Menued branch cleanup",
+        type: Boolean
+    },
+    {
+        name: "init",
+        description: "Initialize Gittey configuration in your project",
         type: Boolean
     },
     { 

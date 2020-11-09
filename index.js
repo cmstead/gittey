@@ -1,17 +1,29 @@
 #!/usr/bin/env node
 
 const { match } = require('matchlight');
+const chalk = require('chalk');
 
 const package = require('./package.json');
 
-const { configureBranchPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
-const cliOptions = require('./modules/config/cli-options');
+const { configureBranchPrefixes, configureCommitPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
 const branchPrefixes = require('./modules/help/branch-prefixes');
 const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const branchService = require('./modules/branch/branch-service');
 const helpOutput = require('./modules/help/help-output');
 
+let cliOptions;
+
+try{
+    cliOptions = require('./modules/config/cli-options');
+} catch(e) {
+    console.log('');
+    console.log(chalk.bold('Whoops! That command doesn\'t exist, here is what Gittey can do:'));
+
+    cliOptions = {
+        help: true
+    };
+}
 
 match(cliOptions, function (onCase, onDefault) {
     onCase({ ['new-branch']: true },
@@ -20,9 +32,18 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['commit']: true },
         () => commitService.createCommit());
 
+    onCase({ ['init']: true },
+        () => configureBranchPrefixes()
+            .then(() => configureCommitPrefixes())
+            .then(() => console.log('Gittey has been configured for this project.')));
+
     onCase({ ['configure-branch-annotations']: true },
         () => configureBranchPrefixes()
             .then(() => console.log('Branch prefixes configured.')));
+
+    onCase({ ['configure-commit-annotations']: true },
+        () => configureCommitPrefixes()
+            .then(() => console.log('Commit message prefixes configured.')));
 
     onCase({ ['reset-configuration']: true },
         () => clearConfig());

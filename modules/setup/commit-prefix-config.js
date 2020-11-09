@@ -1,16 +1,19 @@
 const inquirer = require("inquirer");
 const { match } = require('matchlight');
+const arloPrefixes = require('../../default-configurations/arlo-notation.json');
 
 function getPrefixSetup() {
     return inquirer
         .prompt([
             {
                 name: "prefixSeparator",
-                message: "Separator between prefix and branch name [enter for none]",
+                message: "Separator between prefix and commit message",
+                default: ' '
             },
             {
-                name: 'branchNameValidator',
-                message: 'Branch name validation pattern (regex only) [enter for none]'
+                name: 'messageValidator',
+                message: 'Message validation pattern (regex only)',
+                default: '^.{1,45}$'
             }
         ]);
 }
@@ -74,7 +77,21 @@ function getPrefixes(prefixes) {
         });
 }
 
-function getBranchPrefixConfig() {
+function getPrefixPreference() {
+    return inquirer.prompt([
+        {
+            name: 'prefixPreference',
+            message: 'Choose your preferred prefix scheme',
+            type: 'list',
+            choices: [
+                'Arlo Commit Annotations',
+                'Custom Annotations'
+            ]
+        }
+    ]);
+}
+
+function getCommitPrefixConfig() {
     let config = {
         separator: "",
         validator: "",
@@ -84,9 +101,16 @@ function getBranchPrefixConfig() {
     return getPrefixSetup()
         .then(function (answers) {
             config.separator = answers.prefixSeparator;
-            config.validator = answers.branchNameValidator;
+            config.validator = answers.messageValidator;
 
-            return getPrefixes({});
+            return getPrefixPreference();
+        })
+        .then(function(result){
+            if(result.prefixPreference.toLowerCase().includes('arlo')) {
+                return arloPrefixes;
+            } else {
+                return getPrefixes({});
+            }
         })
         .then(function (prefixes) {
             config.prefixes = prefixes;
@@ -96,5 +120,5 @@ function getBranchPrefixConfig() {
 }
 
 module.exports = {
-    getBranchPrefixConfig
+    getCommitPrefixConfig
 };
