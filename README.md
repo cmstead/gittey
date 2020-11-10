@@ -46,8 +46,9 @@ Coming and current features:
     - [ ] Remove aliases via command line
 - [ ] Configuration
     - [x] Configure branch prefix annotations
-    - [ ] Configure commit prefix annotations
+    - [x] Configure commit prefix annotations
     - [x] Reset Gittey configuration
+    - [x] Project init
     - [ ] Only reset branch annotation configuration
     - [ ] Only reset commit annotation configuration
 - [x] Help/Man information
@@ -56,13 +57,15 @@ Coming and current features:
 
 Current options at the command line for Gittey:
 
- - `--configure-branch-annotations` - Create branch annotation prefixes
- - `--reset-configuration` - Reset configuration to default settings
- - `--delete-branch` - Delete a branch
- - `--prune-branches` - Menued branch cleanup
- - `--branch-prefixes` - Display branch prefixes and descriptions
- - `--commit-prefixes` - Display commit prefixes and descriptions
- - `--new-branch` - Create a new branch using defined configuration
- - `--commit` - Create a new branch using defined configuration
- - `-h, --help` - Display help info
- - `-v, --version` - Display current version
+- `--branch-prefixes` - Display branch prefixes and descriptions
+- `--commit` - Create a new branch using defined configuration
+- `--commit-prefixes` - Display commit prefixes and descriptions
+- `--configure-branch-annotations` - Create branch annotation prefixes
+- `--configure-commit-annotations` - Create commit annotation prefixes
+- `--delete-branch` - Delete a branch
+- `-h`, `--help` - Display help info
+- `--init` - Initialize Gittey configuration in your project
+- `--new-branch` - Create a new branch using defined configuration
+- `--prune-branches` - Menued branch cleanup
+- `--reset-configuration` - Reset configuration to default settings
+- `-v`, `--version` - Display current version

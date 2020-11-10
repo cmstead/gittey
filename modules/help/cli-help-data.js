@@ -1,6 +1,16 @@
 const options = require('../config/cli-options-data');
 const chalk = require('chalk');
 
+function byName(a, b) {
+    if(a.name < b.name) {
+        return -1;
+    } else if(a.name > b.name) {
+        return 1
+    } else {
+        return 0;
+    }
+}
+
 module.exports = [
     {
         header: 'Gittey - Unify Your Git Strategy',
@@ -12,6 +22,6 @@ module.exports = [
     },
     {
         header: 'CLI Options',
-        optionList: options
+        optionList: options.sort(byName)
     }
 ];
