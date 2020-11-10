@@ -25,6 +25,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "update-current-branch",
+        description: "Update current branch with remote trunk changes",
+        type: Boolean
+    },
+    {
         name: "init",
         description: "Initialize Gittey configuration in your project",
         type: Boolean

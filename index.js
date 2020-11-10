@@ -48,6 +48,9 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['reset-configuration']: true },
         () => clearConfig());
 
+    onCase({ ['update-current-branch']: true },
+        () => branchService.updateCurrentBranch());
+
     onCase({ ['delete-branch']: true },
         () => branchService.deleteBranch());
 
