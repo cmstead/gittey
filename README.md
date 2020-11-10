@@ -31,7 +31,7 @@ Coming and current features:
 - [ ] Local branch tooling
     - [x] Easy single-branch delete
     - [x] Easy delete for multiple local branches (prune)
-    - [x] Pull latest master/main branch and update current branch
+    - [x] Fetch latest master/main branch and update current branch
     - [ ] Merge into current branch
     - [ ] Merge current branch into another
     - [ ] Merge current branch and another branch into a temp branch
@@ -41,7 +41,7 @@ Coming and current features:
     - [x] Commit message annotation key visualization
     - [x] Custom commit annotation prefixing
 - [ ] Custom git aliases
-    - [ ] Runnable aliases with `gittey --run <aliasName>`
+    - [ ] Runnable aliases with `gittey --aliasName`
     - [ ] Add new aliases via command line
     - [ ] Remove aliases via command line
 - [ ] Configuration
@@ -50,8 +50,6 @@ Coming and current features:
     - [x] Configure commit prefix annotations
     - [x] Reset Gittey configuration
     - [x] Project init
-    - [ ] Only reset branch annotation configuration
-    - [ ] Only reset commit annotation configuration
 - [x] Help/Man information
 
 ## CLI Options ##
@@ -69,4 +67,5 @@ Current options at the command line for Gittey:
 - `--new-branch` - Create a new branch using defined configuration
 - `--prune-branches` - Menued branch cleanup
 - `--reset-configuration` - Reset configuration to default settings
+- `--update-current-branch` - Update current branch with remote trunk changes
 - `-v`, `--version` - Display current version
