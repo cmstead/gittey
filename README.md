@@ -35,16 +35,17 @@ Coming and current features:
     - [ ] Merge into current branch
     - [ ] Merge current branch into another
     - [ ] Merge current branch and another branch into a temp branch
-- [ ] Commit prefix annotations
+- [x] Commit prefix annotations
     - [X] Check if changes have not been added, offer to add them
     - [x] Provide canned Arlo-style annotations
     - [x] Commit message annotation key visualization
-    - [ ] Custom commit annotation prefixing
+    - [x] Custom commit annotation prefixing
 - [ ] Custom git aliases
     - [ ] Runnable aliases with `gittey --run <aliasName>`
     - [ ] Add new aliases via command line
     - [ ] Remove aliases via command line
 - [ ] Configuration
+    - [ ] Check if there is a newer version on run
     - [x] Configure branch prefix annotations
     - [x] Configure commit prefix annotations
     - [x] Reset Gittey configuration
