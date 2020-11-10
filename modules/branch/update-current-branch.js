@@ -8,6 +8,8 @@ function fetchTrunk(branchIndex = 0) {
     const fetchCommand = `git fetch origin ${selectedBranch}`;
 
     try {
+        console.log(`Attempting to fetch ${selectedBranch}`);
+        
         childProcess.execSync(fetchCommand);
         return selectedBranch;
     } catch (e) {

@@ -31,7 +31,7 @@ Coming and current features:
 - [ ] Local branch tooling
     - [x] Easy single-branch delete
     - [x] Easy delete for multiple local branches (prune)
-    - [ ] Pull latest master/main branch and update current branch
+    - [x] Pull latest master/main branch and update current branch
     - [ ] Merge into current branch
     - [ ] Merge current branch into another
     - [ ] Merge current branch and another branch into a temp branch
