@@ -4,35 +4,13 @@ const { promisify } = require('util');
 
 const exec = promisify(childProcess.exec);
 
-function readBranchNames() {
-    const branchCommand = 'git branch';
-    const branchPrefixPattern = /^\s\s/;
-
-    return exec(branchCommand)
-        .then(result => {
-            return result.stdout.split('\n')
-                .filter(branchName => branchPrefixPattern.test(branchName))
-                .map(branchName => branchName.replace(branchPrefixPattern, ''));
-        });
-}
-
-function selectBranch(branchNames) {
-    return inquirer.prompt([
-        {
-            name: 'branchName',
-            message: 'Select a branch to delete',
-            type: 'list',
-            choices: branchNames
-        }
-    ])
-    .then(function(result){
-        return result.branchName;
-    });
-}
+const branchUtils = require('./branch-utils');
 
 function getBranchName() {
-    return readBranchNames()
-        .then(branchNames => selectBranch(branchNames))
+    return branchUtils
+        .readBranchNames()
+        .then(branchNames => branchUtils
+            .selectBranch(branchNames, 'Select a branch to delete'))
         .catch(function (error) {
             console.log('Unable to select branch for delete', error);
         });
@@ -50,25 +28,25 @@ function deleteBranches([...branchNames]) {
             name: 'deleteOk',
             message: `The branch(s) ${branchNames.join(', ')} will be permanently deleted! [y/N]`,
             default: 'n',
-        	validate: (deleteOk) => {
+            validate: (deleteOk) => {
                 return deleteOk.toLowerCase() === 'y'
                     || deleteOk.toLowerCase() === 'n';
             }
         }
     ])
-    .then(function(result){
-        if(result.deleteOk.toLowerCase() === 'y') {
-            return exec(gitCommand);
-        } else {
-            console.log('Branch delete was canceled');
-        }
-    });
+        .then(function (result) {
+            if (result.deleteOk.toLowerCase() === 'y') {
+                return exec(gitCommand);
+            } else {
+                console.log('Branch delete was canceled');
+            }
+        });
 
 }
 
 function pruneBranches() {
     return readBranchNames()
-        .then(function(branchNames){
+        .then(function (branchNames) {
             return inquirer.prompt([
                 {
                     name: 'selectedBranches',
@@ -78,16 +56,25 @@ function pruneBranches() {
                 }
             ]);
         })
-        .then(function(result){
+        .then(function (result) {
             return deleteBranches(result.selectedBranches);
         })
-        .catch(function(error){
+        .catch(function (error) {
             console.log('Unable to delete selected branches', error);
+        });
+}
+
+function deleteBranchBySelectedName() {
+    return getBranchName()
+        .then(branchName => deleteBranchByName(branchName))
+        .catch(function(error){
+            console.log('Unable to delete branch', error);
         });
 }
 
 module.exports = {
     deleteBranchByName,
+    deleteBranchBySelectedName,
     getBranchName,
     pruneBranches
 }
