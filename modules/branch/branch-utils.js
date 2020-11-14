@@ -30,7 +30,20 @@ function selectBranch(branchNames, message = "Select a branch") {
         });
 }
 
+function attemptMerge(branchToMerge) {
+    const gitCommand = `git merge ${branchToMerge}`;
+
+    try {
+        childProcess.execSync(gitCommand);
+
+        console.log('Update completed successfully');
+    } catch (e) {
+        console.log(`Failed to merge changes from ${branchToMerge}`, e);
+    }
+}
+
 module.exports = {
+    attemptMerge,
     readBranchNames,
     selectBranch
 }

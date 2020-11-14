@@ -51,6 +51,9 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['update-current-branch']: true },
         () => branchService.updateCurrentBranch());
 
+    onCase({ ['merge-from-branch']: true },
+        () => branchService.mergeFromBranch());
+
     onCase({ ['delete-branch']: true },
         () => branchService.deleteBranch());
 

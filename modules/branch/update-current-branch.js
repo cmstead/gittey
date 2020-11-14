@@ -1,4 +1,5 @@
 const childProcess = require('child_process');
+const { attemptMerge } = require('./branch-utils');
 
 const commonTrunkBranches = ['master', 'main'];
 
@@ -20,18 +21,6 @@ function fetchTrunk(branchIndex = 0) {
 
             return null;
         }
-    }
-}
-
-function attemptMerge(primaryBranch) {
-    const gitCommand = `git merge ${primaryBranch}`;
-
-    try {
-        childProcess.execSync(gitCommand);
-
-        console.log('Update completed successfully');
-    } catch (e) {
-        console.log('Failed to merge changes from ', e);
     }
 }
 

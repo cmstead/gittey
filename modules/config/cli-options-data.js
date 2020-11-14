@@ -25,6 +25,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "merge-from-branch",
+        description: "Merge another branch into current branch",
+        type: Boolean
+    },
+    {
         name: "update-current-branch",
         description: "Update current branch with remote trunk changes",
         type: Boolean
