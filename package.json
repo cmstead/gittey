@@ -1,6 +1,6 @@
 {
   "name": "gittey",
-  "version": "0.9.4",
+  "version": "0.10.0",
   "description": "Git utils for enhanced worflows",
   "main": "index.js",
   "bin": {
