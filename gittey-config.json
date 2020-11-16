@@ -34,7 +34,7 @@
         },
         {
             "name": "publish-minor",
-            "command": "npm version minor; npm publish"
+            "command": "node ./scripts/publish.js minor"
         },
         {
             "name": "publish-major",
