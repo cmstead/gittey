@@ -1,6 +1,10 @@
 # Gittey #
 
-Gittey is a Git tool to help simplify the task of unifying a team git strategy. The vision of this tool is to augment the Git work done at the command line, rather than simply wrapping it.
+Customize your Git workflow.
+
+Gittey is a tool to help you and your team customize your Git workflow to best match your day to day needs. Gittey comes with a number of tools out of the box, including branch, and commit prefix annotations and simplified branch management tools. Everything is configurable from the command line, and saved in a JSON configuration file. This means you can change your configuration in a text editor if you prefer!
+
+Finally, you can easily extend the Gittey command set with custom aliases. Aliases can be raw CLI commands, or you can actually script your own workflow addition and fold it in with everything else with a simple alias.
 
 ## Installation ##
 
@@ -15,7 +19,7 @@ npm install -g gittey
 After Gittey is installed, run the following command in a project to add a Gittey configuration:
 
 ```
-gittey --configure-branch-annotations
+gittey --init
 ```
 
 This will walk you though configuring branch annotations for Gittey and save a configuration file to your project. Be sure to commit the configuration so your team can use it too.
