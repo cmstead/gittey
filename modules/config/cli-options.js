@@ -2,6 +2,12 @@ const commandLineArgs = require('command-line-args');
 
 const options = require('./cli-options-data');
 
+function addDashes(value) {
+    if (!value.startsWith('-')) {
+        return `--${value}`;
+    }
+}
+
 module.exports = (aliases = []) => {
 
     aliases.forEach(function (alias) {
@@ -12,5 +18,7 @@ module.exports = (aliases = []) => {
         });
     });
 
-    return commandLineArgs(options);
+    const args = process.argv.slice(2).map(addDashes);
+
+    return commandLineArgs(options, { argv: args });
 };
