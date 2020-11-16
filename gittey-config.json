@@ -30,7 +30,7 @@
     "aliases": [
         {
             "name": "publish-patch",
-            "command": "npm version patch; npm publish"
+            "command": "node ./scripts/publish.js patch"
         },
         {
             "name": "publish-minor",
@@ -38,7 +38,7 @@
         },
         {
             "name": "publish-major",
-            "command": "npm version major; npm publish"
+            "command": "node ./scripts/publish.js major"
         }
     ]
 }

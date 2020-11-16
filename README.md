@@ -41,7 +41,7 @@ Coming and current features:
     - [x] Commit message annotation key visualization
     - [x] Custom commit annotation prefixing
 - [ ] Custom git aliases
-    - [ ] Runnable aliases with `gittey --aliasName`
+    - [x] Runnable aliases with `gittey --aliasName`
     - [ ] Add new aliases via command line
     - [ ] Remove aliases via command line
 - [ ] Configuration
