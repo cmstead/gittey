@@ -34,15 +34,15 @@
         },
         {
             "name": "publish-patch",
-            "command": "npm version patch; npm publish; gittey --push"
+            "command": "gittey --commit; npm version patch; npm publish; gittey --push"
         },
         {
             "name": "publish-minor",
-            "command": "npm version minor; npm publish; gittey --push"
+            "command": "gittey --commit; npm version minor; npm publish; gittey --push"
         },
         {
             "name": "publish-major",
-            "command": "npm version major; npm publish; gittey --push"
+            "command": "gittey --commit; npm version major; npm publish; gittey --push"
         }
     ]
 }
