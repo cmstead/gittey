@@ -66,6 +66,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: 'update',
+        description: 'Update to latest version',
+        type: Boolean
+    },
+    {
         name: 'version',
         alias: 'v',
         description: 'Display current version',

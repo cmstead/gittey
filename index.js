@@ -20,9 +20,9 @@ const aliases = gitteyConfig.aliases || [];
 
 let cliOptions;
 
-try{
+try {
     cliOptions = require('./modules/config/cli-options')(aliases);
-} catch(e) {
+} catch (e) {
     console.log('');
     console.log(chalk.bold('Whoops! That command doesn\'t exist, here is what Gittey can do:'));
 
@@ -80,10 +80,13 @@ match(cliOptions, function (onCase, onDefault) {
 
     onCase({ ['version']: true }, () => console.log(`v${package.version}`));
 
-    aliases.forEach(function(alias) {
+    onCase({ ['update']: true }, () =>
+        childProcess.execSync(`npm install gittey@latest -g`, { stdio: 'inherit' }));
+
+    aliases.forEach(function (alias) {
         onCase({ [alias.name]: true }, () => {
             alias.command.split(';')
-                .forEach(function(command) {
+                .forEach(function (command) {
                     childProcess.execSync(command, { stdio: 'inherit' });
                 });
         });
