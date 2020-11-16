@@ -26,5 +26,19 @@
             "R!!": "Non-provable refactoring",
             "***": "Does not compile -- intermediate step"
         }
-    }
+    },
+    "aliases": [
+        {
+            "name": "publish-patch",
+            "command": "npm version patch; npm publish"
+        },
+        {
+            "name": "publish-minor",
+            "command": "npm version minor; npm publish"
+        },
+        {
+            "name": "publish-major",
+            "command": "npm version major; npm publish"
+        }
+    ]
 }

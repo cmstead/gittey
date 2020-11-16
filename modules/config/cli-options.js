@@ -2,6 +2,14 @@ const commandLineArgs = require('command-line-args');
 
 const options = require('./cli-options-data');
 
-const definitions = options;
+module.exports = (aliases = []) => {
 
-module.exports = commandLineArgs(definitions);
+    aliases.forEach(function (alias) {
+        options.push({
+            name: alias.name,
+            type: Boolean
+        });
+    });
+
+    return commandLineArgs(options);
+};
