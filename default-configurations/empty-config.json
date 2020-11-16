@@ -8,5 +8,6 @@
         "separator": " ",
         "validator": "^.{1,50}$",
         "prefixes": {}
-    }
+    },
+    "aliases": []
 }
