@@ -81,7 +81,6 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['version']: true }, () => console.log(`v${package.version}`));
 
     aliases.forEach(function(alias) {
-        console.log(alias);
         onCase({ [alias.name]: true }, (option) => {
             childProcess.execSync(alias.command, { stdio: 'inherit' });
         });
