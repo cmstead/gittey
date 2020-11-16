@@ -83,11 +83,7 @@ match(cliOptions, function (onCase, onDefault) {
     aliases.forEach(function(alias) {
         console.log(alias);
         onCase({ [alias.name]: true }, (option) => {
-            console.log('option:', option);
-            console.log('command:', alias.command);
-            childProcess.exec(alias.command, function() {
-                console.log('done executing', arguments);
-            })
+            childProcess.execSync(alias.command, { stdio: 'inherit' });
         });
     });
 

@@ -29,16 +29,8 @@
     },
     "aliases": [
         {
-            "name": "publish-patch",
-            "command": "node ./scripts/publish.js patch"
-        },
-        {
-            "name": "publish-minor",
-            "command": "node ./scripts/publish.js minor"
-        },
-        {
-            "name": "publish-major",
-            "command": "node ./scripts/publish.js major"
+            "name": "push",
+            "command": "git push origin main --tags"
         }
     ]
 }
