@@ -5,6 +5,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "delete-alias",
+        description: "Delete a user-configured command alias",
+        type: Boolean
+    },
+    {
         name: "configure-branch-annotations",
         description: "Create branch annotation prefixes",
         type: Boolean

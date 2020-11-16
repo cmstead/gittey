@@ -35,6 +35,7 @@ try {
 
 match(cliOptions, function (onCase, onDefault) {
     onCase({ ['add-alias']: true }, () => aliasConfig.addAlias());
+    onCase({ ['delete-alias']: true }, () => aliasConfig.deleteAlias());
 
     onCase({ ['new-branch']: true },
         () => branchService.createBranch());

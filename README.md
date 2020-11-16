@@ -40,10 +40,10 @@ Coming and current features:
     - [x] Provide canned Arlo-style annotations
     - [x] Commit message annotation key visualization
     - [x] Custom commit annotation prefixing
-- [ ] Custom git aliases
+- [x] Custom git aliases
     - [x] Runnable aliases with `gittey --aliasName`
-    - [ ] Add new aliases via command line
-    - [ ] Remove aliases via command line
+    - [x] Add new aliases via command line
+    - [x] Remove aliases via command line
 - [ ] Configuration
     - [ ] Check if there is a newer version on run
     - [x] Configure branch prefix annotations
