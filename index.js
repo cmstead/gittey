@@ -8,12 +8,14 @@ const chalk = require('chalk');
 const package = require('./package.json');
 
 const { configureBranchPrefixes, configureCommitPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
+const aliasConfig = require('./modules/setup/alias-config');
 const branchPrefixes = require('./modules/help/branch-prefixes');
 const branchService = require('./modules/branch/branch-service');
 const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const configService = require('./modules/config/config-service');
 const helpOutput = require('./modules/help/help-output');
+const { addAlias } = require('./modules/setup/alias-config');
 
 const gitteyConfig = configService.getConfig();
 const aliases = gitteyConfig.aliases || [];
@@ -32,6 +34,8 @@ try {
 }
 
 match(cliOptions, function (onCase, onDefault) {
+    onCase({ ['add-alias']: true }, () => aliasConfig.addAlias());
+
     onCase({ ['new-branch']: true },
         () => branchService.createBranch());
 

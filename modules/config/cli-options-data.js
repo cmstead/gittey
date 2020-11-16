@@ -1,5 +1,10 @@
 module.exports = [
     {
+        name: "add-alias",
+        description: "Add a new user-configured command alias",
+        type: Boolean
+    },
+    {
         name: "configure-branch-annotations",
         description: "Create branch annotation prefixes",
         type: Boolean
