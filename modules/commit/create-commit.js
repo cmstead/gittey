@@ -60,6 +60,8 @@ function areThereUnstagedFiles() {
 
     return exec(gitCommand)
         .then(function (result) {
+            console.log(result);
+            
             const fileStatuses = result.stdout.split('\n')
 
             return fileStatuses.find(value => /^.[^\s]/.test(value)) !== null;
