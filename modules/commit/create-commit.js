@@ -76,6 +76,8 @@ function areThereChangesToCommit() {
 
     return exec(gitCommand)
         .then(function (result) {
+            console.log(result);
+            
             return result.stdout.trim() !== '';
         })
         .catch(function (error) {
