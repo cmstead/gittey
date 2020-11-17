@@ -21,22 +21,28 @@ function buildBranchName(branchData, branchPrefix) {
 
 }
 
-function getBranchInfo(branchPrefix) {
-    const validatorPattern = new RegExp(branchPrefix.validator);
+function getBranchInfo(branchPrefixConfig) {
+    const validatorPattern = new RegExp(branchPrefixConfig.validator);
+    const prefixOptions = getPrefixOptions(branchPrefixConfig);
 
-    return inquirer.prompt([
-        {
-            name: 'prefix',
-            message: 'What are you working on?',
-            type: 'list',
-            choices: getPrefixOptions(branchPrefix)
-        },
+    let prompts = [
         {
             name: 'branchName',
             message: 'Branch name:',
             validate: createValidator(validatorPattern)
         }
-    ]);
+    ];
+
+    if(prefixOptions.length > 0) {
+        prompts.unshift({
+            name: 'prefix',
+            message: 'What are you working on?',
+            type: 'list',
+            choices: getPrefixOptions(branchPrefixConfig)
+        })
+    }
+
+    return inquirer.prompt(prompts);
 }
 
 function createNewBranch(branchName) {
