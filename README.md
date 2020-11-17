@@ -19,7 +19,7 @@ npm install -g gittey
 After Gittey is installed, run the following command in a project to add a Gittey configuration:
 
 ```
-gittey --init
+gittey init
 ```
 
 This will walk you though configuring branch annotations for Gittey and save a configuration file to your project. Be sure to commit the configuration so your team can use it too.
