@@ -44,14 +44,16 @@ function createCommit() {
         }
     })
     .then(function(){
-        console.log(!areThereChangesToCommit())
-
-        if(!areThereChangesToCommit()) {
+        return areThereChangesToCommit();
+    })
+    .then(function(changesExist){
+        if(!changesExist) {
             console.log('No changes to commit.');
             return;
         } else {
             return commitSource();
         }
+        
     })
 }
 
