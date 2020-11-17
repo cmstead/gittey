@@ -62,7 +62,7 @@ function areThereUnstagedFiles() {
         .then(function (result) {
             const fileStatuses = result.stdout.split('\n')
 
-            return fileStatuses.find(value => /^.[^\s]/.test(value)) !== undefined;
+            return Boolean(fileStatuses.find(value => /^.[^\s]/.test(value)));
         })
         .catch(function (error) {
             console.log('Unable to check for unstaged files', error);
