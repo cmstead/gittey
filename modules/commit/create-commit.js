@@ -71,6 +71,22 @@ function areThereUnstagedFiles() {
         });
 }
 
+function areThereChangesToCommit() {
+    const gitCommand = 'git status --porcelain';
+
+    return exec(gitCommand)
+        .then(function (result) {
+            const fileStatuses = result.stdout.split('\n')
+
+            return fileStatuses.trim() !== '';
+        })
+        .catch(function (error) {
+            console.log('Unable to check for unstaged files', error);
+
+            return false;
+        });
+}
+
 function verifyUserWantsToStageFiles() {
     return inquirer.prompt([
         {
@@ -95,6 +111,7 @@ function stageFiles() {
 }
 
 module.exports = {
+    areThereChangesToCommit,
     areThereUnstagedFiles,
     buildCommitMessage,
     createNewCommit,
