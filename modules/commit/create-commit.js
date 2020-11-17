@@ -76,9 +76,7 @@ function areThereChangesToCommit() {
 
     return exec(gitCommand)
         .then(function (result) {
-            const fileStatuses = result.stdout.split('\n')
-
-            return fileStatuses.trim() !== '';
+            return result.stdout.trim() !== '';
         })
         .catch(function (error) {
             console.log('Unable to check for unstaged files', error);
