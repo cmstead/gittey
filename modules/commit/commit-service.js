@@ -44,6 +44,8 @@ function createCommit() {
         }
     })
     .then(function(){
+        console.log(!areThereChangesToCommit())
+
         if(!areThereChangesToCommit()) {
             console.log('No changes to commit.');
             return;
