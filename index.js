@@ -90,15 +90,19 @@ match(cliOptions, function (onCase, onDefault) {
 
     aliases.forEach(function (alias) {
         onCase({ [alias.name]: true }, () => {
+            const args = cliOptions.args || [];
+
             alias.command.split(';')
                 .forEach(function (command) {
-                    childProcess.execSync(command, { stdio: 'inherit' });
+
+                    childProcess.execSync(`${command} ${args.join(' ')}`, { stdio: 'inherit' });
                 });
         });
     });
 
     onDefault(() => {
         console.log('Gittey: unknown command, sorry.');
+        helpOutput.display();
         process.exit(1);
     });
 });

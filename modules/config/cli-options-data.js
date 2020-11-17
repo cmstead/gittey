@@ -10,6 +10,12 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "args",
+        description: "Arguments to supply to alias command",
+        type: String,
+        multiple: true
+    },
+    {
         name: "configure-branch-annotations",
         description: "Create branch annotation prefixes",
         type: Boolean
