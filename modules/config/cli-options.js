@@ -6,6 +6,8 @@ function addDashes(value) {
     if (!value.startsWith('-')) {
         return `--${value}`;
     }
+
+    return value;
 }
 
 module.exports = (aliases = []) => {
@@ -20,7 +22,7 @@ module.exports = (aliases = []) => {
 
     let args = process.argv.slice(2);
 
-    args[0] = addDashes(args[0])
+    args[0] = addDashes(args[0]);
 
     const result = commandLineArgs(options, { stopAtFirstUnknown: true, argv: args });
 

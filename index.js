@@ -15,7 +15,6 @@ const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const configService = require('./modules/config/config-service');
 const helpOutput = require('./modules/help/help-output');
-const { addAlias } = require('./modules/setup/alias-config');
 
 const gitteyConfig = configService.getConfig();
 const aliases = gitteyConfig.aliases || [];
