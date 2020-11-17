@@ -13,11 +13,6 @@ const configService = require('../config/config-service');
 function commitSource() {
     const { commitPrefix } = configService.getConfig();
 
-    if(!areThereChangesToCommit()) {
-        console.log('No changes to commit.');
-        return;
-    }
-
     return getCommitInfo(commitPrefix)
         .then(function (commitData) {
             const branchName = buildCommitMessage(commitData, commitPrefix);
@@ -49,7 +44,12 @@ function createCommit() {
         }
     })
     .then(function(){
-        return commitSource();
+        if(!areThereChangesToCommit()) {
+            console.log('No changes to commit.');
+            return;
+        } else {
+            return commitSource();
+        }
     })
 }
 
