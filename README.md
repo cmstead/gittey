@@ -125,6 +125,7 @@ Current options at the command line for Gittey:
 - `-h`, `--help` - Display help info
 - `--init` - Initialize Gittey configuration in your project
 - `--merge-from-branch` - Merge another branch into current branch
+- `--merge-to-branch` - Merge current branch into another branch
 - `--new-branch` - Create a new branch using defined configuration
 - `--prune-branches` - Menued branch cleanup
 - `--reset-configuration` - Reset configuration to default settings
