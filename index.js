@@ -14,72 +14,86 @@ const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const helpOutput = require('./modules/help/help-output');
 
-const { getCliOptions, getAliases } = require("./modules/shared/runtime-helper");
+const { getCliOptions, getAliases } = require("./modules/runtime/runtime-helper");
+const { checkForUpdate } = require("./modules/runtime/version-service");
 const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
 
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
 
-match(cliOptions, function (onCase, onDefault) {
-    onCase({ ['add-alias']: true }, () => aliasConfig.addAlias());
-    onCase({ ['delete-alias']: true }, () => aliasConfig.deleteAlias());
+new Promise(function (resolve) {
+    resolve(true);
+})
+    .then(function () {
+        match(cliOptions, function (onCase, onDefault) {
+            onCase({ ['add-alias']: true },
+                () => aliasConfig.addAlias());
 
-    onCase({ ['new-branch']: true },
-        () => branchService.createBranch());
+            onCase({ ['delete-alias']: true },
+                () => aliasConfig.deleteAlias());
 
-    onCase({ ['commit']: true },
-        () => commitService.createCommit());
+            onCase({ ['new-branch']: true },
+                () => branchService.createBranch());
 
-    onCase({ ['init']: true },
-        () => configureBranchPrefixes()
-            .then(() => configureCommitPrefixes())
-            .then(() => console.log('Gittey has been configured for this project.')));
+            onCase({ ['commit']: true },
+                () => commitService.createCommit());
 
-    onCase({ ['configure-branch-annotations']: true },
-        () => configureBranchPrefixes()
-            .then(() => console.log('Branch prefixes configured.')));
+            onCase({ ['init']: true },
+                () => configureBranchPrefixes()
+                    .then(() => configureCommitPrefixes())
+                    .then(() => console.log('Gittey has been configured for this project.')));
 
-    onCase({ ['configure-commit-annotations']: true },
-        () => configureCommitPrefixes()
-            .then(() => console.log('Commit message prefixes configured.')));
+            onCase({ ['configure-branch-annotations']: true },
+                () => configureBranchPrefixes()
+                    .then(() => console.log('Branch prefixes configured.')));
 
-    onCase({ ['reset-configuration']: true },
-        () => clearConfig());
+            onCase({ ['configure-commit-annotations']: true },
+                () => configureCommitPrefixes()
+                    .then(() => console.log('Commit message prefixes configured.')));
 
-    onCase({ ['update-current-branch']: true },
-        () => branchService.updateCurrentBranch());
+            onCase({ ['reset-configuration']: true },
+                () => clearConfig());
 
-    onCase({ ['merge-from-branch']: true },
-        () => branchService.mergeFromBranch());
+            onCase({ ['update-current-branch']: true },
+                () => branchService.updateCurrentBranch());
 
-    onCase({ ['delete-branch']: true },
-        () => branchService.deleteBranch());
+            onCase({ ['merge-from-branch']: true },
+                () => branchService.mergeFromBranch());
 
-    onCase({ ['prune-branches']: true },
-        () => branchService.pruneBranches());
+            onCase({ ['delete-branch']: true },
+                () => branchService.deleteBranch());
 
-    onCase({ ['branch-prefixes']: true },
-        () => branchPrefixes.displayBranchPrefixes());
+            onCase({ ['prune-branches']: true },
+                () => branchService.pruneBranches());
 
-    onCase({ ['commit-prefixes']: true },
-        () => commitPrefixes.displayBranchPrefixes());
+            onCase({ ['branch-prefixes']: true },
+                () => branchPrefixes.displayBranchPrefixes());
 
-    onCase({ ['commit-prefixes']: true },
-        () => commitPrefixes.displayBranchPrefixes());
+            onCase({ ['commit-prefixes']: true },
+                () => commitPrefixes.displayBranchPrefixes());
 
-    onCase({ ['help']: true },
-        () => helpOutput.display());
+            onCase({ ['commit-prefixes']: true },
+                () => commitPrefixes.displayBranchPrefixes());
 
-    onCase({ ['version']: true }, () => console.log(`v${package.version}`));
+            onCase({ ['help']: true },
+                () => helpOutput.display());
 
-    onCase({ ['update']: true }, () =>
-        childProcess.execSync(`npm install gittey@latest -g`, { stdio: 'inherit' }));
+            onCase({ ['version']: true },
+                () => console.log(`v${package.version}`));
 
-    registerUserCommands(aliases, onCase);
+            onCase({ ['update']: true },
+                () =>
+                    childProcess.execSync(`npm install gittey@latest -g`, { stdio: 'inherit' }));
 
-    onDefault(() => {
-        console.log('Gittey: unknown command, sorry.');
-        helpOutput.display();
-        process.exit(1);
+            registerUserCommands(aliases, onCase);
+
+            onDefault(() => {
+                console.log('Gittey: unknown command, sorry.');
+                helpOutput.display();
+                process.exit(1);
+            });
+        });
+    })
+    .then(function () {
+        checkForUpdate(package.version);
     });
-});

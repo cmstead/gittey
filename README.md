@@ -48,8 +48,8 @@ Coming and current features:
     - [x] Runnable aliases with `gittey --aliasName`
     - [x] Add new aliases via command line
     - [x] Remove aliases via command line
-- [ ] Configuration
-    - [ ] Check if there is a newer version on run
+- [x] Configuration
+    - [x] Check if there is a newer version on run
     - [x] Configure branch prefix annotations
     - [x] Configure commit prefix annotations
     - [x] Reset Gittey configuration

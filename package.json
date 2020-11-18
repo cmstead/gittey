@@ -21,8 +21,10 @@
     "chalk": "^4.1.0",
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
+    "compare-versions": "^3.6.0",
     "console.table": "^0.10.0",
     "inquirer": "^7.3.3",
-    "matchlight": "^2.1.0"
+    "matchlight": "^2.1.0",
+    "npm-api": "^1.0.0"
   }
 }
