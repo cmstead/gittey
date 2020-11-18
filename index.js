@@ -98,5 +98,7 @@ new Promise(function (resolve) {
         });
     })
     .then(function () {
-        checkForUpdate(package.version);
+        if(!cliOptions.update) {
+            checkForUpdate(package.version);
+        }
     });
