@@ -24,6 +24,59 @@ gittey init
 
 This will walk you though configuring branch annotations for Gittey and save a configuration file to your project. Be sure to commit the configuration so your team can use it too.
 
+## Example Configuration ##
+
+```json
+{
+    "branchPrefix": {
+        "separator": "-",
+        "validator": "",
+        "prefixes": {
+            "Bug": "Bug Fix",
+            "Fea": "New Feature",
+            "Ver": "New Version"
+        }
+    },
+    "commitPrefix": {
+        "separator": " ",
+        "validator": ".{1,45}",
+        "prefixes": {
+            "F": "Feature (<= 8 LoC)",
+            "B": "Bug fix (<= 8 LoC)",
+            "R": "Test-supported Procedural Refactoring",
+            "t": "Test only",
+            "d": "Developer documentation (non-user facing)",
+            "a": "Automated formatting / code generation",
+            "r": "Provable (manual) refactoring",
+            "c": "Comments (add/delete)",
+            "e": "Environment (non-code) changes (for development)",
+            "F!!": "Feature (> 8 LoC)",
+            "B!!": "Bug fix (> 8 LoC)",
+            "R!!": "Non-provable refactoring",
+            "***": "Does not compile -- intermediate step"
+        }
+    },
+    "aliases": [
+        {
+            "name": "push",
+            "command": "git push origin main --tags"
+        },
+        {
+            "name": "publish-patch",
+            "command": "gittey commit; npm version patch; npm publish; gittey push"
+        },
+        {
+            "name": "publish-minor",
+            "command": "gittey commit; npm version minor; npm publish; gittey push"
+        },
+        {
+            "name": "publish-major",
+            "command": "gittey commit; npm version major; npm publish; gittey push"
+        }
+    ]
+}
+```
+
 ## Features ##
 
 Coming and current features:

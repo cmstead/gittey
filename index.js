@@ -85,7 +85,7 @@ new Promise(function (resolve) {
                 () =>
                     childProcess.execSync(`npm install gittey@latest -g`, { stdio: 'inherit' }));
 
-            registerUserCommands(aliases, onCase);
+            registerUserCommands(aliases, cliOptions, onCase);
 
             onDefault(() => {
                 console.log('Gittey: unknown command, sorry.');
