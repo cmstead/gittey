@@ -18,7 +18,7 @@ function readBranchNames() {
 
 function getCurrentBranch() {
     const branchCommand = 'git branch';
-    const branchPrefixPattern = /^*\s/;
+    const branchPrefixPattern = /^\*\s/;
 
     return exec(branchCommand)
         .then(result => {
