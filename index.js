@@ -3,7 +3,6 @@
 const childProcess = require('child_process');
 
 const { match } = require('matchlight');
-const chalk = require('chalk');
 
 const package = require('./package.json');
 
@@ -13,24 +12,13 @@ const branchPrefixes = require('./modules/help/branch-prefixes');
 const branchService = require('./modules/branch/branch-service');
 const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
-const configService = require('./modules/config/config-service');
 const helpOutput = require('./modules/help/help-output');
 
-const gitteyConfig = configService.getConfig();
-const aliases = gitteyConfig.aliases || [];
+const { getCliOptions, getAliases } = require("./modules/shared/runtime-helper");
+const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
 
-let cliOptions;
-
-try {
-    cliOptions = require('./modules/config/cli-options')(aliases);
-} catch (e) {
-    console.log('');
-    console.log(chalk.bold('Whoops! That command doesn\'t exist, here is what Gittey can do:'));
-
-    cliOptions = {
-        help: true
-    };
-}
+const aliases = getAliases();
+const cliOptions = getCliOptions(aliases);
 
 match(cliOptions, function (onCase, onDefault) {
     onCase({ ['add-alias']: true }, () => aliasConfig.addAlias());
@@ -87,17 +75,7 @@ match(cliOptions, function (onCase, onDefault) {
     onCase({ ['update']: true }, () =>
         childProcess.execSync(`npm install gittey@latest -g`, { stdio: 'inherit' }));
 
-    aliases.forEach(function (alias) {
-        onCase({ [alias.name]: true }, () => {
-            const args = cliOptions.args || [];
-
-            alias.command.split(';')
-                .forEach(function (command) {
-
-                    childProcess.execSync(`${command} ${args.join(' ')}`, { stdio: 'inherit' });
-                });
-        });
-    });
+    registerUserCommands(aliases, onCase);
 
     onDefault(() => {
         console.log('Gittey: unknown command, sorry.');
