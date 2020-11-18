@@ -60,6 +60,9 @@ new Promise(function (resolve) {
             onCase({ ['merge-from-branch']: true },
                 () => branchService.mergeFromBranch());
 
+            onCase({ ['merge-to-branch']: true },
+                () => branchService.mergeToBranch());
+
             onCase({ ['delete-branch']: true },
                 () => branchService.deleteBranch());
 

@@ -16,6 +16,18 @@ function readBranchNames() {
         });
 }
 
+function getCurrentBranch() {
+    const branchCommand = 'git branch';
+    const branchPrefixPattern = /^*\s/;
+
+    return exec(branchCommand)
+        .then(result => {
+            return result.stdout.split('\n')
+                .filter(branchName => branchPrefixPattern.test(branchName))
+                .map(branchName => branchName.replace(branchPrefixPattern, ''))[0];
+        });
+}
+
 function selectBranch(branchNames, message = "Select a branch") {
     return inquirer.prompt([
         {
@@ -44,6 +56,7 @@ function attemptMerge(branchToMerge) {
 
 module.exports = {
     attemptMerge,
+    getCurrentBranch,
     readBranchNames,
     selectBranch
 }
