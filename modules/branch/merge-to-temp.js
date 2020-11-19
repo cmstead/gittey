@@ -1,6 +1,8 @@
 const childProcess = require('child_process');
 const util = require('util');
 
+const inquirer = require('inquirer');
+
 const { readBranchNames, selectBranch, attemptMerge, getCurrentBranch } = require('./branch-utils');
 
 function checkoutBranch(branchName) {
@@ -9,8 +11,21 @@ function checkoutBranch(branchName) {
     return util.promisify(childProcess.exec)(gitCommand);
 }
 
+function getTempBranchName() {
+    return inquirer.prompt([
+        {
+            name: 'tempBranchName',
+            message: 'Name of the temp branch to merge to'
+        }
+    ])
+    .then(function(result){
+        return result.getTempBranchName;
+    });
+}
+
 function mergeToBranch() {
     let currentBranch = '';
+    let sourceBranch = '';
 
     return getCurrentBranch()
         .then(function (branchName) {
@@ -20,16 +35,19 @@ function mergeToBranch() {
             return readBranchNames();
         })
         .then(function (branchNames) {
-            return selectBranch(branchNames, "Select branch to merge to");
+            return selectBranch(branchNames, "Select branch to merge from");
+        })
+        .then(function (sourceBranchName) {
+            sourceBranch = sourceBranchName;
+        })
+        .then(function () {
+            return getTempBranchName();
         })
         .then(function (branchName) {
             return checkoutBranch(branchName)
         })
         .then(function () {
-            return attemptMerge(currentBranch);
-        })
-        .finally(function() {
-            checkoutBranch(currentBranch);
+            return attemptMerge(sourceBranch);
         });
 }
 
