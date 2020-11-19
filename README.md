@@ -85,13 +85,13 @@ Coming and current features:
     - [x] Branch prefixing
     - [x] Branch annotation key visualization
     - [x] Branch name validation
-- [ ] Local branch tooling
+- [x] Local branch tooling
     - [x] Easy single-branch delete
     - [x] Easy delete for multiple local branches (prune)
     - [x] Fetch latest master/main branch and update current branch
     - [x] Merge into current branch
     - [x] Merge current branch into another
-    - [ ] Merge current branch and another branch into a temp branch
+    - [x] Merge current branch and another branch into a temp branch
 - [x] Commit prefix annotations
     - [X] Check if changes have not been added, offer to add them
     - [x] Provide canned Arlo-style annotations
