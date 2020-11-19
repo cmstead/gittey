@@ -23,7 +23,7 @@ function getTempBranchName() {
     });
 }
 
-function mergeToBranch() {
+function mergeToTemp() {
     let currentBranch = '';
     let sourceBranch = '';
 
@@ -52,5 +52,5 @@ function mergeToBranch() {
 }
 
 module.exports = {
-    mergeToBranch
+    mergeToTemp
 }

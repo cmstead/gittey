@@ -51,6 +51,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "merge-to-temp",
+        description: "Merge current branch and another branch into a temp branch",
+        type: Boolean
+    },
+    {
         name: "update-current-branch",
         description: "Update current branch with remote trunk changes",
         type: Boolean

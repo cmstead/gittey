@@ -63,6 +63,9 @@ new Promise(function (resolve) {
             onCase({ ['merge-to-branch']: true },
                 () => branchService.mergeToBranch());
 
+            onCase({ ['merge-to-temp']: true },
+                () => branchService.mergeToTemp());
+
             onCase({ ['delete-branch']: true },
                 () => branchService.deleteBranch());
 
