@@ -6,7 +6,7 @@ const inquirer = require('inquirer');
 const { readBranchNames, selectBranch, attemptMerge, getCurrentBranch } = require('./branch-utils');
 
 function checkoutBranch(branchName) {
-    const gitCommand = `git checkout ${branchName}`;
+    const gitCommand = `git checkout -b ${branchName}`;
 
     return util.promisify(childProcess.exec)(gitCommand);
 }
@@ -19,21 +19,14 @@ function getTempBranchName() {
         }
     ])
     .then(function(result){
-        return result.getTempBranchName;
+        return result.tempBranchName;
     });
 }
 
 function mergeToTemp() {
-    let currentBranch = '';
     let sourceBranch = '';
 
-    return getCurrentBranch()
-        .then(function (branchName) {
-            currentBranch = branchName;
-        })
-        .then(function () {
-            return readBranchNames();
-        })
+    return readBranchNames()
         .then(function (branchNames) {
             return selectBranch(branchNames, "Select branch to merge from");
         })
