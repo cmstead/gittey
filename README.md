@@ -79,35 +79,51 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 ## Features ##
 
-Coming and current features:
+### Current Features ###
 
-- [x] Branch annotations
-    - [x] Branch prefixing
-    - [x] Branch annotation key visualization
-    - [x] Branch name validation
-- [x] Local branch tooling
-    - [x] Easy single-branch delete
-    - [x] Easy delete for multiple local branches (prune)
-    - [x] Fetch latest master/main branch and update current branch
-    - [x] Merge into current branch
-    - [x] Merge current branch into another
-    - [x] Merge current branch and another branch into a temp branch
-- [x] Commit prefix annotations
-    - [X] Check if changes have not been added, offer to add them
-    - [x] Provide canned Arlo-style annotations
-    - [x] Commit message annotation key visualization
-    - [x] Custom commit annotation prefixing
-- [x] Custom git aliases
-    - [x] Runnable aliases with `gittey --aliasName`
-    - [x] Add new aliases via command line
-    - [x] Remove aliases via command line
-- [x] Configuration
-    - [x] Check if there is a newer version on run
-    - [x] Configure branch prefix annotations
-    - [x] Configure commit prefix annotations
-    - [x] Reset Gittey configuration
-    - [x] Project init
-- [x] Help/Man information
+- Branch annotations
+    - Branch prefixing
+    - Branch annotation key visualization
+    - Branch name validation
+- Local branch tooling
+    - Easy single-branch delete
+    - Easy delete for multiple local branches (prune)
+    - Fetch latest master/main branch and update current branch
+    - Merge into current branch
+    - Merge current branch into another
+    - Merge current branch and another branch into a temp branch
+- Commit prefix annotations
+    - Check if changes have not been added, offer to add them
+    - Provide canned Arlo-style annotations
+    - Commit message annotation key visualization
+    - Custom commit annotation prefixing
+- Custom git aliases
+    - Runnable aliases with `gittey --aliasName`
+    - Add new aliases via command line
+    - Remove aliases via command line
+- Configuration
+    - Check if there is a newer version on run
+    - Configure branch prefix annotations
+    - Configure commit prefix annotations
+    - Reset Gittey configuration
+    - Project init
+- Help/Man information
+
+### New Feature List ###
+
+- [ ] Clone
+    - [ ] Clone from URL (standard clone w/ prompt)
+    - [ ] Clone from GitHub by username
+- [ ] Remote repo management
+    - [ ] Add remote repo
+    - [ ] Remove remote repo
+    - [ ] Update remote repo URL
+    - [ ] List all remote repos
+- [ ] Emergency commit to temp branch and push
+- [ ] Pre-baked aliases
+    - [ ] Update from secondary remote
+    - [ ] Push to secondary remote
+    - [ ] Commit and push
 
 ## CLI Options ##
 

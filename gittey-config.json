@@ -33,6 +33,10 @@
             "command": "git push origin main --tags"
         },
         {
+            "name": "commit-and-push",
+            "command": "gittey commit; gittey push"
+        },
+        {
             "name": "publish-patch",
             "command": "gittey commit; npm version patch; npm publish; gittey push"
         },
