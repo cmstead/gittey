@@ -114,7 +114,7 @@ Coming and current features:
 Current options at the command line for Gittey:
 
 - `--add-alias` - Add a new user-configured command alias
-- `--args` *string[]* - Arguments to supply to alias command
+- `--args` - *string[]*                   Arguments to supply to alias command
 - `--branch-prefixes` - Display branch prefixes and descriptions
 - `--commit` - Create a new branch using defined configuration
 - `--commit-prefixes` - Display commit prefixes and descriptions
@@ -126,6 +126,7 @@ Current options at the command line for Gittey:
 - `--init` - Initialize Gittey configuration in your project
 - `--merge-from-branch` - Merge another branch into current branch
 - `--merge-to-branch` - Merge current branch into another branch
+- `--merge-to-temp` - Merge current branch and another branch into a temp branch
 - `--new-branch` - Create a new branch using defined configuration
 - `--prune-branches` - Menued branch cleanup
 - `--reset-configuration` - Reset configuration to default settings
