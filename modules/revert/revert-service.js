@@ -13,30 +13,32 @@ const exec = util.promisify(childProcess.exec);
 const logLinePattern = /^([^\s]+)\s(.*)/;
 
 function getLatestLogs() {
-    const gitCommand = 'git log --pretty=online -20';
+    const gitCommand = 'git log --pretty=oneline -20';
 
     return exec(gitCommand)
         .then(function (result) {
-            const lines = result.split('\n').map(line => line.trim());
-            return lines.map(function (line) {
-                const hash = line.replace(logLinePattern, '$1');
-                const description = line.replace(logLinePattern, '$2');
+            const lines = result.stdout.split('\n').map(line => line.trim());
+            return lines
+                .filter(line => line.trim() !== '')
+                .map(function (line) {
+                    const hash = line.replace(logLinePattern, '$1');
+                    const description = line.replace(logLinePattern, '$2');
 
-                return {
-                    hash,
-                    description
-                }
-            });
+                    return {
+                        hash,
+                        description
+                    }
+                });
         })
 }
 
 function getCommits(logs) {
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             name: 'selectedCommits',
             message: 'Select commits to revert:',
             type: 'checkbox',
-            choices: logs.map((log, index) => `${index + 1} - ${log.description}`);
+            choices: logs.map((log, index) => `${index + 1} - ${log.description}`)
         }
     ])
         .then(function ({ selectedCommits }) {
@@ -59,3 +61,19 @@ function commitRevert() {
     return commitService.createCommit();
 }
 
+function revertCommits() {
+    return getLatestLogs()
+        .then(function (logs) {
+            return getCommits(logs);
+        })
+        .then(function (selectedCommits) {
+            return revert(selectedCommits);
+        })
+        .then(function () {
+            return commitRevert();
+        });
+}
+
+module.exports = {
+    revertCommits
+}

@@ -31,6 +31,11 @@ module.exports = [
         type: Boolean
     },
     {
+        name: "revert-commits",
+        description: "Revert recent commits",
+        type: Boolean
+    },
+    {
         name: "delete-branch",
         description: "Delete a branch",
         type: Boolean

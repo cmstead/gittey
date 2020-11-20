@@ -17,6 +17,7 @@ const helpOutput = require('./modules/help/help-output');
 const { getCliOptions, getAliases } = require("./modules/runtime/runtime-helper");
 const { checkForUpdate } = require("./modules/runtime/version-service");
 const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
+var { revertCommits } = require('./modules/revert/revert-service');
 
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
@@ -53,6 +54,9 @@ new Promise(function (resolve) {
 
             onCase({ ['reset-configuration']: true },
                 () => clearConfig());
+
+            onCase({ ['revert-commits']: true },
+                () => revertCommits());
 
             onCase({ ['update-current-branch']: true },
                 () => branchService.updateCurrentBranch());
@@ -101,7 +105,7 @@ new Promise(function (resolve) {
         });
     })
     .then(function () {
-        if(!cliOptions.update) {
+        if (!cliOptions.update) {
             checkForUpdate(package.version);
         }
     });
