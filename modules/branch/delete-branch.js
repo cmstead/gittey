@@ -45,7 +45,8 @@ function deleteBranches([...branchNames]) {
 }
 
 function pruneBranches() {
-    return readBranchNames()
+    return branchUtils
+        .readBranchNames()
         .then(function (branchNames) {
             return inquirer.prompt([
                 {
@@ -67,7 +68,7 @@ function pruneBranches() {
 function deleteBranchBySelectedName() {
     return getBranchName()
         .then(branchName => deleteBranchByName(branchName))
-        .catch(function(error){
+        .catch(function (error) {
             console.log('Unable to delete branch', error);
         });
 }
