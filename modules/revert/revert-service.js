@@ -5,9 +5,6 @@ const inquirer = require('inquirer');
 
 const commitService = require('../commit/commit-service');
 
-// git log --pretty=oneline -20
-// git revert --no-commit [list of hashes]
-
 const exec = util.promisify(childProcess.exec);
 
 const logLinePattern = /^([^\s]+)\s(.*)/;
@@ -44,7 +41,7 @@ function getCommits(logs) {
         .then(function ({ selectedCommits }) {
             return selectedCommits.map(commit => {
                 const index = parseInt(commit.split(' - ')[0]);
-                return logs[index];
+                return logs[index - 1];
             });
         });
 }
