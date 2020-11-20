@@ -29,6 +29,10 @@
     },
     "aliases": [
         {
+            "name": "update-branch",
+            "command": "gittey update-current-branch"
+        },
+        {
             "name": "push",
             "command": "git push origin main --tags"
         },
