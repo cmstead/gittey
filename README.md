@@ -124,6 +124,9 @@ This will walk you though configuring branch annotations for Gittey and save a c
     - [ ] Update from secondary remote
     - [ ] Push to secondary remote
     - [ ] Commit and push
+- [ ] Revert
+    - [ ] Individual commits
+    - [ ] Single commit
 
 ## CLI Options ##
 
