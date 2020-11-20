@@ -114,6 +114,7 @@ This will walk you though configuring branch annotations for Gittey and save a c
 - [ ] Clone
     - [ ] Clone from URL (standard clone w/ prompt)
     - [ ] Clone from GitHub by username
+- [ ] Revert commits
 - [ ] Remote repo management
     - [ ] Add remote repo
     - [ ] Remove remote repo
@@ -124,16 +125,13 @@ This will walk you though configuring branch annotations for Gittey and save a c
     - [ ] Update from secondary remote
     - [ ] Push to secondary remote
     - [ ] Commit and push
-- [ ] Revert
-    - [ ] Individual commits
-    - [ ] Single commit
 
 ## CLI Options ##
 
 Current options at the command line for Gittey:
 
 - `--add-alias` - Add a new user-configured command alias
-- `--args` - *string[]*                   Arguments to supply to alias command
+- `--args` *string[]* - Arguments to supply to alias command
 - `--branch-prefixes` - Display branch prefixes and descriptions
 - `--commit` - Create a new branch using defined configuration
 - `--commit-prefixes` - Display commit prefixes and descriptions
