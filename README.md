@@ -114,7 +114,7 @@ This will walk you though configuring branch annotations for Gittey and save a c
 - [ ] Clone
     - [ ] Clone from URL (standard clone w/ prompt)
     - [ ] Clone from GitHub by username
-- [ ] Revert commits
+- [x] Revert commits
 - [ ] Remote repo management
     - [ ] Add remote repo
     - [ ] Remove remote repo
