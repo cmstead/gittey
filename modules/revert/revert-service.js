@@ -9,6 +9,24 @@ const exec = util.promisify(childProcess.exec);
 
 const logLinePattern = /^([^\s]+)\s(.*)/;
 
+function areThereUncommittedFiles() {
+    const gitCommand = 'git status --porcelain';
+
+    return exec(gitCommand)
+        .then(function (result) {
+            const fileStatuses = result.stdout
+                .split('\n')
+                .filter(line => line.trim() !== '');
+
+            return fileStatuses.length > 0;
+        })
+        .catch(function (error) {
+            console.log('Unable to check for unstaged files', error);
+
+            return false;
+        });
+}
+
 function getLatestLogs() {
     const gitCommand = 'git log --pretty=oneline -20';
 
@@ -58,7 +76,7 @@ function commitRevert() {
     return commitService.createCommit();
 }
 
-function revertCommits() {
+function startRevertCommits() {
     return getLatestLogs()
         .then(function (logs) {
             return getCommits(logs);
@@ -69,6 +87,17 @@ function revertCommits() {
         .then(function () {
             return commitRevert();
         });
+}
+
+function revertCommits() {
+    return areThereUncommittedFiles()
+        .then(function (uncommittedFilesExist) {
+            if (uncommittedFilesExist) {
+                console.log('There are uncommitted files. Cancelling revert.');
+            } else {
+                return startRevertCommits();
+            }
+        })
 }
 
 module.exports = {
