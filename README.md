@@ -147,6 +147,7 @@ Current options at the command line for Gittey:
 - `--new-branch` - Create a new branch using defined configuration
 - `--prune-branches` - Menued branch cleanup
 - `--reset-configuration` - Reset configuration to default settings
+- `--revert-commits` - Revert recent commits
 - `--update` - Update to latest version
 - `--update-current-branch` - Update current branch with remote trunk changes
 - `-v`, `--version` - Display current version
