@@ -15,7 +15,9 @@ function getPrefixOptions(commitPrefix) {
 }
 
 function buildCommitMessage(commitData, commitPrefix) {
-    const prefix = commitData.prefix.split(' - ')[0];
+    const prefix = typeof commitData.prefix === 'string'
+        ? commitData.prefix.split(' - ')[0]
+        : '';
     const name = commitData.commitMessage;
     const separator = commitPrefix.separator;
 
