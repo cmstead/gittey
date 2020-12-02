@@ -19,7 +19,9 @@ function buildCommitMessage(commitData, commitPrefix) {
         ? commitData.prefix.split(' - ')[0]
         : '';
     const name = commitData.commitMessage;
-    const separator = commitPrefix.separator;
+    const separator = prefix.trim() !== ''
+        ? commitPrefix.separator
+        : '';
 
     return `${prefix}${separator}${name}`;
 
