@@ -16,6 +16,11 @@ module.exports = [
         multiple: true
     },
     {
+        name: "clone",
+        description: "Clone remote repository",
+        type: Boolean
+    },
+    {
         name: "configure-branch-annotations",
         description: "Create branch annotation prefixes",
         type: Boolean

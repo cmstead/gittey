@@ -10,6 +10,7 @@ const { configureBranchPrefixes, configureCommitPrefixes, clearConfig } = requir
 const aliasConfig = require('./modules/setup/alias-config');
 const branchPrefixes = require('./modules/help/branch-prefixes');
 const branchService = require('./modules/branch/branch-service');
+const cloneService = require('./modules/clone/clone-service');
 const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const helpOutput = require('./modules/help/help-output');
@@ -43,6 +44,9 @@ new Promise(function (resolve) {
                 () => configureBranchPrefixes()
                     .then(() => configureCommitPrefixes())
                     .then(() => console.log('Gittey has been configured for this project.')));
+
+            onCase({ ['clone']: true },
+                () => cloneService.cloneRepository());
 
             onCase({ ['configure-branch-annotations']: true },
                 () => configureBranchPrefixes()
