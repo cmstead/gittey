@@ -46,7 +46,7 @@ new Promise(function (resolve) {
                     .then(() => console.log('Gittey has been configured for this project.')));
 
             onCase({ ['clone']: true },
-                () => cloneService.cloneRepository());
+                () => cloneService.clone());
 
             onCase({ ['configure-branch-annotations']: true },
                 () => configureBranchPrefixes()
