@@ -22,11 +22,11 @@ function getCloneUrl() {
 
 function getGitHubRepositoryList(username, page = 1) {
     const listUrl = `https://api.github.com/users/${username}/repos?sort=full_name&per_page=100&page=${page}`;
+
     return axios
         .get(listUrl)
         .then(function ({ data: repositoryList }) {
-            console.log(repositoryList.length);
-            if (getGitHubRepositoryList.length < 100) {
+            if (repositoryList.length < 100) {
                 return repositoryList;
             } else {
                 return getGitHubRepositoryList(username, page + 1)
@@ -45,7 +45,7 @@ function buildRepositoryChoices(repositoryList) {
 function selectRepository(repositoryList) {
     const repositoryChoices = buildRepositoryChoices(repositoryList);
 
-    inquirer
+    return inquirer
         .prompt([
             {
                 name: 'selectedRepository',
@@ -64,7 +64,7 @@ function getUsername() {
     return inquirer.prompt([
         {
             name: 'username',
-            message: 'Gihub user to clone from'
+            message: 'Gihub user to clone from:'
         }
     ])
         .then(function ({ username }) {
@@ -75,6 +75,7 @@ function getUsername() {
 function cloneUserRepository() {
     return getUsername()
         .then(function (username) {
+            console.log('Loading repository list...');
             return getGitHubRepositoryList(username);
         })
         .then(function (repositoryList) {
