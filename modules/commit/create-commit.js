@@ -102,7 +102,7 @@ function verifyUserWantsToStageFiles() {
         }
     ])
         .then(function (result) {
-            return result.stageFiles;
+            return result.stageFiles.toLowerCase() === 'y';
         });
 }
 
