@@ -1,0 +1,442 @@
+{
+    "Project": {
+        "ID": 23,
+        "Name": "Lac Alfred",
+        "Type": "Wind",
+        "BaseUTCOffsetHours": -5
+    },
+    "Assets": [
+        {
+            "ID": 414,
+            "Name": "032",
+            "SoftwareID": 21
+        }
+    ],
+    "IECCategoryID": 8,
+    "GADSComponentID": 97,
+    "EventCode": 55,
+    "WTGEventCategorizationID": 12468,
+    "Comment": "Pitch tube repair / No cable harness available",
+    "AllConsolidatedEventIDs": [
+        165896844,
+        161747581,
+        159489666,
+        159489665,
+        159944597
+    ],
+    "EventQuery": {
+        "Project": {
+            "ID": 23,
+            "Name": "Lac Alfred",
+            "Type": "Wind",
+            "BaseUTCOffsetHours": -5
+        },
+        "IECCategories": [
+            {
+                "ID": 17,
+                "Name": "Force Majeure",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to damage attributed to a Force Majeure events. That damage WTG, Collection System, Substation. (Lightning strikes, storm damage, acts of god)",
+                "Instructions": "Ensure that all \"acts of God\", including lightning strikes, fires, and other catastrophic events are categorized here.  Please add comments to reflect the nature of the event",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#E6A700"
+            },
+            {
+                "ID": 7,
+                "Name": "Forced Outage",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to an active fault alarm logged in the WTG status.",
+                "Instructions": "Ensure that all turbines down because of a fault are categorized here.  Please add comments if default fault attributed does not accurately reflect the turbine downtime",
+                "DefaultFilter": true,
+                "AgainstAvail": true,
+                "UMC": true,
+                "Color": "#A40F1C"
+            },
+            {
+                "ID": 13,
+                "Name": "Forced Outage BOP",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to electrical parameters outside of the WTG OEM specifications, due to a BOP Electrical Outage. (do not use for Grid events)",
+                "Instructions": "Ensure that only unplanned BoP outages (splices, transformers, etc) are recategorized here.  Please add comments as to nature of BoP Failure/downtime.  ",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#FFCC00"
+            },
+            {
+                "ID": 1,
+                "Name": "Full Performance",
+                "Type": "IEC",
+                "Description": "The WTG is operative and functioning according to design specifications with no technical restrictions or limitations beyond the ones specified in the design specifications.",
+                "Instructions": "Not a default option, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#005E93"
+            },
+            {
+                "ID": 6,
+                "Name": "Full Performance Active Warning",
+                "Type": "IEC",
+                "Description": "The WTG is Operating according to design specifications with an active warning.",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#69CDCF"
+            },
+            {
+                "ID": 124,
+                "Name": "Information Unavailable",
+                "Type": "IEC",
+                "Description": "The WTG information is unavailable in the database.",
+                "Instructions": "This is only a classification given if no active power signals are being read from PI, never recategorize downtime here",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#86898C"
+            },
+            {
+                "ID": 1014,
+                "Name": "Out of Electrical Specification Grid",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to electrical parameters outside of the WTG OEM specifications, due to a Grid Outage.",
+                "Instructions": "Ensure that only unplanned BoP outages (splices, transformers, etc) are recategorized here.  Please add comments as to nature of BoP Failure/downtime.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#FCF4A3"
+            },
+            {
+                "ID": 15,
+                "Name": "Out of Environmental Specification Calm Winds",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to wind speeds below WTG OEM specifications.",
+                "Instructions": "This is determined automatically by the PADRE algorithm, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#4E8F13"
+            },
+            {
+                "ID": 123,
+                "Name": "Out of Environmental Specification Cold Temperature or Icing",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to an active warning code for cold weather or icing event.",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#AED677"
+            },
+            {
+                "ID": 14,
+                "Name": "Out of Environmental Specification High Temperature",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to an active warning code for high temperatures outside of WTG OEM specifications or Plant specific requirements.",
+                "Instructions": "Ensure that all major icing, storm, and weather related downtime events are recategorized here",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#295A10"
+            },
+            {
+                "ID": 16,
+                "Name": "Out of Environmental Specification High Winds",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to wind speeds above WTG OEM specifications.",
+                "Instructions": "This is determined automatically by the PADRE algorithm, do not recategorize into here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#7CB82F"
+            },
+            {
+                "ID": 2,
+                "Name": "Partial Performance Degraded",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance compared to the predefined power curve for reasons not attributed to any of the following Partial Performances: Derate, Derate High Temperature, Derate Cold Temperature or Icing, Derate Manual,  Grid, Derate Noise Planned, or Degraded Icing.",
+                "Instructions": "This is determined automatically by the PADRE algorithm, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#008CC9"
+            },
+            {
+                "ID": 3,
+                "Name": "Partial Performance Derated",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance due to an active warning code caused by a defective part or uncalibrated part.",
+                "Instructions": "Not a default option, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#34B3E4"
+            },
+            {
+                "ID": 5,
+                "Name": "Partial Performance Derated Cold Temperature or Icing",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance due to an active warning code for cold temperature or icing that makes the WTG unable to operate at Full Performance per design specifications.",
+                "Instructions": "This is determined automatically by the PADRE algorithm, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#00AEB3"
+            },
+            {
+                "ID": 4,
+                "Name": "Partial Performance Derated Grid",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance due to partial external curtailment due to Plant output directives from QSE, the transmission provider, the regional transmission authority, or other Party.",
+                "Instructions": "Not a default option, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#008891"
+            },
+            {
+                "ID": 1012,
+                "Name": "Partial Performance Derated High Temperature",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance due to an active warning code due to high temperatures outside the WTG OEM specifications or Plant specific requirements. ",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#3FE0D0"
+            },
+            {
+                "ID": 1000,
+                "Name": "Partial Performance Derated Manual",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance due to a decision to either not run at Full Performance due to safety concerns or to extend the functional life of a Plant Component.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#A5E3E7"
+            },
+            {
+                "ID": 1016,
+                "Name": "Partial Performance Derated Noise Planned",
+                "Type": "IEC",
+                "Description": "The WTG is Operating at reduced performance due to expected noise compliance curtailments.",
+                "Instructions": "The WTG is operating at reduced performance due to expected noise compliance curtailments",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#B0FC38"
+            },
+            {
+                "ID": 9,
+                "Name": "Planned Corrective Actions",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to EDF-RS Unscheduled Maintenance.",
+                "Instructions": "Ensure that all unplanned repairs, retrofits, and troubleshooting is categorized here",
+                "DefaultFilter": true,
+                "AgainstAvail": true,
+                "UMC": true,
+                "Color": "#F16D64"
+            },
+            {
+                "ID": 1001,
+                "Name": "Planned Corrective Actions Existing Defects",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to an Existing Defect. Typically defects identified during after End of Contract or Warranty Inspections.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#F49D97"
+            },
+            {
+                "ID": 1002,
+                "Name": "Planned Corrective Actions Retrofit or Upgrade",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to Owner-requested Reimbursable Services/Expenses to retain, restore, or improve the intended functional life of the WTG. Example:  install fire suppression equipment, condition base monitoring equipment, Vortex Generator, auto-lubrication equipment, etc.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#F1BDBA"
+            },
+            {
+                "ID": 11,
+                "Name": "Requested Shutdown",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to the shutdown initiated by the EDF-RS.  ",
+                "Instructions": "Ensure that all planed, but non-reimburseable utility/grid shutdowns are recategorized here.  Please add comments to describe the nature of the event",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#7C5BBB"
+            },
+            {
+                "ID": 1003,
+                "Name": "Requested Shutdown Emergency",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to an emergency situation at the Plant.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#CFBEEE"
+            },
+            {
+                "ID": 12,
+                "Name": "Requested Shutdown Grid",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to receiving an external curtailment due to Plant output directives from QSE, the transmission provider, or the regional transmission authority or if the EDF-RS initiates shutdowns due to the Plant not responding to the output directive.",
+                "Instructions": "Ensure that all reimburseable curtailment downtime is recategorized here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#A589D9"
+            },
+            {
+                "ID": 1010,
+                "Name": "Requested Shutdown OEM",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to OEM performing services on the WTG required through an agreement between such OEM and the Owner.",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#7D1B7E"
+            },
+            {
+                "ID": 1004,
+                "Name": "Requested Shutdown Owner Request",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to an Owner-requested shut down to perform Site Tours, Audits, or RCAs.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#4E16B7"
+            },
+            {
+                "ID": 1015,
+                "Name": "Requested Shutdown Wildlife",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to an active warning code for a wildlife protection protocol.",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#963694"
+            },
+            {
+                "ID": 8,
+                "Name": "Scheduled Maintenance",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to Scheduled Maintenance as required by the O&M Procedures Manual(s).",
+                "Instructions": "Ensure that all planned, periodic scheduled maintenance activity is categorized here",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#DD2E1F"
+            },
+            {
+                "ID": 1011,
+                "Name": "Scheduled Maintenance Owner",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to OEM performing services on the WTG required through an agreement between such OEM and the Owner.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#FF0000"
+            },
+            {
+                "ID": 1005,
+                "Name": "Suspended Logistics",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to a Plant Component that is not available in the inventory, or while awaiting a crane or hoist to perform Major Component Unscheduled Maintenance up to the point where the crane or hoist is hook ready.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#FF0080"
+            },
+            {
+                "ID": 1006,
+                "Name": "Suspended Owner Response",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to delays in receiving Owner approval required to purchase Plant Components or perform reimbursable work.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#B77396"
+            },
+            {
+                "ID": 1007,
+                "Name": "Suspended Safety Stand Down",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative, and corrective actions are prevented due to conditions that are outside the EDF-RS safety policy for performing Services or due to conditions that prevent EDF-RS from accessing the necessary portions of the Plant. Examples:  high winds, icing/ice throw shutdown, lightning, air quality, active flooding, recent flooding damage, roads being unsafe to travel personnel.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#FE77BC"
+            },
+            {
+                "ID": 1008,
+                "Name": "Suspended Serial Defect or Loss",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to damage, fault, failure, or alarm, which has disabled components or systems due to a Serial Loss.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#FF97CC"
+            },
+            {
+                "ID": 1017,
+                "Name": "Suspended WTG Access",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative, and corrective actions cannot be performed due to WTG access being prevented by site roads being snow drifted, deferred road maintenance, county road restrictions (frost laws and transportation permits delays).",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#DF5286"
+            },
+            {
+                "ID": 1009,
+                "Name": "Suspended WTG OEM Delay",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative due to delayed OEM support required through an agreement between such OEM and the Owner when EDF is providing O&M on the WTGs.",
+                "DefaultFilter": true,
+                "AgainstAvail": false,
+                "UMC": true,
+                "Color": "#FAB4D8"
+            },
+            {
+                "ID": 10,
+                "Name": "Technical Standby",
+                "Type": "IEC",
+                "Description": "The WTG is Out of Service due to the performance of autonomous tasks required for maintaining intended functions. Example:  yaw untwisting, battery test, brake test, heat up",
+                "Instructions": "This is determined automatically by the PADRE algorithm, do not reclassify events here",
+                "DefaultFilter": false,
+                "AgainstAvail": false,
+                "UMC": false,
+                "Color": "#573B93"
+            },
+            {
+                "ID": 18,
+                "Name": "Unclassified Downtime",
+                "Type": "IEC",
+                "Description": "The WTG is Non-Operative, and the alarm code has not been auto-allocated. The downtime must be re-allocated to the correct category.",
+                "Instructions": "This is only a classification given if PADRE can not determine the root cause of the downtim automatically, never recategorize downtime here",
+                "DefaultFilter": true,
+                "AgainstAvail": true,
+                "UMC": true,
+                "Color": "#595C5F"
+            }
+        ],
+        "Assets": [
+            {
+                "ID": 414,
+                "Name": "032",
+                "SoftwareID": 21
+            }
+        ],
+        "Start": "2020-11-09T08:00:00.000Z",
+        "End": "2020-11-15T07:59:59.999Z"
+    },
+    "StartTime": "2020-11-11T03:00:00.000Z",
+    "EndTime": "2020-11-11T04:50:00.000Z",
+    "ClientUTCOffsetStart": 8,
+    "ClientUTCOffsetEnd": 8,
+    "CreatedBy": "christian.stead",
+    "CreatedByDisplay": "Chris Stead"
+}

@@ -111,10 +111,11 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 ### New Feature List ###
 
-- [ ] Clone
-    - [ ] Clone from URL (standard clone w/ prompt)
-    - [ ] Clone from GitHub by username
+- [x] Clone
+    - [x] Clone from URL (standard clone w/ prompt)
+    - [x] Clone from GitHub by username
 - [x] Revert commits
+- [ ] Collaborator mode
 - [ ] Remote repo management
     - [ ] Add remote repo
     - [ ] Remove remote repo
