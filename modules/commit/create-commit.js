@@ -42,9 +42,9 @@ function getCommitBody(lastBodyContent = '') {
             const commitBody = `${lastBodyContent}${commitBodyLine.replace(/^(.*)"?$/, '$1')}\n`;
 
             if(commitBodyLine[commitBodyLine.length - 1] === '"') {
-                return getCommitBody(commitBody);
-            } else {
                 return commitBody;
+            } else {
+                return getCommitBody(commitBody);
             }
         });
 }
