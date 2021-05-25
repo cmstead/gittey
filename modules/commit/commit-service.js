@@ -20,11 +20,13 @@ function commitSource() {
 
             return createNewCommit(branchName);
         })
+
         .then(function (commitMessage) {
             console.log(`Commit complete: "${commitMessage}"`);
         })
+        
         .catch(function (error) {
-            console.log('Unable to create branch', error);
+            console.log('Unable to create commit', error);
         });
 }
 
@@ -39,6 +41,7 @@ function createCommit() {
             return false;
         }
     })
+
     .then(function(userWantsToStageFiles){
         if(userWantsToStageFiles) {
             return stageFiles();
@@ -46,9 +49,11 @@ function createCommit() {
             return null;
         }
     })
+
     .then(function(){
         return areThereChangesToCommit();
     })
+
     .then(function(changesExist){
         if(!changesExist) {
             console.log('No changes to commit.');
