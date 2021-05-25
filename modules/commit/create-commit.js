@@ -78,7 +78,7 @@ function getCommitInfo(commitPrefixConfig) {
 
             console.log(`Commit title: ${commitTitle}`)
             
-            if(/^".*[^"]$/.test()) {
+            if(/^".*[^"]$/.test(commitValues.commitMessage)) {
                 return getCommitBody()
                     .then(commitBody => `${commitTitle}${commitBody}`)
                     .then(commitMessage => {
