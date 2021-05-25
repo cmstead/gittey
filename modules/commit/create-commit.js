@@ -39,7 +39,7 @@ function getCommitBody(lastBodyContent = null) {
     return inquirer
         .prompt(commitBodyPrompts)
         .then(function({ commitBodyLine }) {
-            const cleanCommitBodyLine = commitBodyLine.replace(/^(.*)"?$/, '$1');
+            const cleanCommitBodyLine = commitBodyLine.replace(/"$/, '');
 
             const commitBody = lastBodyContent === null
                 ? cleanCommitBodyLine
