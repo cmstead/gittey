@@ -27,7 +27,7 @@ function buildCommitMessage(commitData, commitPrefix) {
 
 }
 
-function getCommitBody(lastBodyContent = '') {
+function getCommitBody(lastBodyContent = null) {
     const commitBodyPrompts = [
         {
             name: 'commitBodyLine',
@@ -39,9 +39,13 @@ function getCommitBody(lastBodyContent = '') {
     return inquirer
         .prompt(commitBodyPrompts)
         .then(function({ commitBodyLine }) {
-            const commitBody = `${lastBodyContent}${commitBodyLine.replace(/^(.*)"?$/, '$1')}\n`;
+            const cleanCommitBodyLine = commitBodyLine.replace(/^(.*)"?$/, '$1');
+            
+            const commitBody = lastBodyContent === null
+                ? cleanCommitBodyLine
+                : `${lastBodyContent}${cleanCommitBodyLine}`;
 
-            if(commitBodyLine[commitBodyLine.length - 1] === '"') {
+            if(/^.*"$/.test(commitBodyLine)) {
                 return commitBody;
             } else {
                 return getCommitBody(commitBody);
