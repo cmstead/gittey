@@ -43,7 +43,7 @@ function getCommitBody(lastBodyContent = null) {
 
             const commitBody = lastBodyContent === null
                 ? cleanCommitBodyLine
-                : `${lastBodyContent}${cleanCommitBodyLine}`;
+                : `${lastBodyContent}\n${cleanCommitBodyLine}`;
 
             if(/^.*"$/.test(commitBodyLine)) {
                 return commitBody;
