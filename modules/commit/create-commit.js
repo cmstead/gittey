@@ -27,7 +27,7 @@ function buildCommitMessage(commitData, commitPrefix) {
 
 }
 
-function getCommitBody(lastBodyContent = null) {
+function getCommitBody(lastBodyContent = '') {
     const commitBodyPrompts = [
         {
             name: 'commitBodyLine',
