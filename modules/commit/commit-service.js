@@ -5,6 +5,7 @@ const {
     createNewCommit,
     getCommitInfo,
     stageFiles,
+    showStatus,
     verifyUserWantsToStageFiles
 } = require('./create-commit');
 
@@ -31,7 +32,9 @@ function createCommit() {
     return areThereUnstagedFiles()
     .then(function(unstagedFilesExist){
         if(unstagedFilesExist) {
-            return verifyUserWantsToStageFiles();
+            return showStatus()
+            .then(({ stdout }) => console.log(`\nUnstaged file status:\n\n${stdout}`))
+            .then(() => verifyUserWantsToStageFiles());
         } else {
             return false;
         }

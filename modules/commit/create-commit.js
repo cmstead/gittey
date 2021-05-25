@@ -112,12 +112,19 @@ function stageFiles() {
     return exec(gitCommand);
 }
 
+function showStatus() {
+    const gitCommand = 'git status --short';
+
+    return exec(gitCommand);
+}
+
 module.exports = {
     areThereChangesToCommit,
     areThereUnstagedFiles,
     buildCommitMessage,
     createNewCommit,
     getCommitInfo,
+    showStatus,
     stageFiles,
     verifyUserWantsToStageFiles
 }
