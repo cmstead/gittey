@@ -77,6 +77,41 @@ This will walk you though configuring branch annotations for Gittey and save a c
 }
 ```
 
+## Fun Gittey Tricks ##
+
+### Committing ###
+
+- Commit messages do not require quotes for single line messages
+- If you put quotes around your commit message, you can enter a multiline commit message, just like working in regular old Git
+
+### Aliases ###
+
+- Adding a `push` alias in the config file, you can add an auto-commit action which will save you from accidentally pushing without committing your latest files. It works like this:
+
+```
+"aliases": [
+    {
+        "name": "push",
+        "command": "gittey commit; git push"
+    }
+]
+
+// now you can run `gittey push` and it just works
+```
+
+- Adding a `pull` alias you can add a commit, then pull action:
+
+```
+"aliases": [
+    {
+        "name": "pull",
+        "command": "gittey commit; git ull"
+    }
+]
+
+// now you can run `gittey pull` and it just works
+```
+
 ## Features ##
 
 ### Current Features ###
