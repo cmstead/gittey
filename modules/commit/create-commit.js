@@ -40,7 +40,7 @@ function getCommitBody(lastBodyContent = null) {
         .prompt(commitBodyPrompts)
         .then(function({ commitBodyLine }) {
             const cleanCommitBodyLine = commitBodyLine.replace(/^(.*)"?$/, '$1');
-            
+
             const commitBody = lastBodyContent === null
                 ? cleanCommitBodyLine
                 : `${lastBodyContent}${cleanCommitBodyLine}`;
@@ -80,8 +80,6 @@ function getCommitInfo(commitPrefixConfig) {
         .then(function(commitValues){
             const commitTitle = commitValues.commitMessage.replace(/^"?(.*)"?$/, '$1');
 
-            console.log(`Commit title: ${commitTitle}`)
-            
             if(/^".*[^"]$/.test(commitValues.commitMessage)) {
                 return getCommitBody()
                     .then(commitBody => `${commitTitle}${commitBody}`)
