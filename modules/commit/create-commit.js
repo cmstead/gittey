@@ -34,7 +34,7 @@ function getCommitInfo(commitPrefixConfig) {
     let prompts = [
         {
             name: 'commitMessage',
-            type: 'input',
+            type: 'editor',
             message: 'Commit message:',
             validate: createValidator(validatorPattern)
         }
