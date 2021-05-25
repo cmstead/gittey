@@ -1,6 +1,6 @@
 function createValidator(validatorPattern) {
     return (value) => {
-        return !validatorPattern.test(value.split('\n')[0])
+        return !validatorPattern.test(value.replace('"', ''))
             ? `Input does not match required pattern: ${validatorPattern}`
             : true;
     }

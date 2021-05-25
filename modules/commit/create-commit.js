@@ -27,21 +27,43 @@ function buildCommitMessage(commitData, commitPrefix) {
 
 }
 
+function getCommitBody(lastBodyContent = '') {
+    const commitBodyPrompts = [
+        {
+            name: 'commitBodyLine',
+            type: 'input',
+            message: '>>'
+        }
+    ];
+
+    return inquirer
+        .prompt(commitBodyPrompts)
+        .then(function({ commitBodyLine }) {
+            const commitBody = `${lastBodyContent}${commitBodyLine.replace(/^(.*)"?$/, '$1')}\n`;
+
+            if(commitBodyLine[commitBodyLine.length - 1] === '"') {
+                return getCommitBody(commitBody);
+            } else {
+                return commitBody;
+            }
+        });
+}
+
 function getCommitInfo(commitPrefixConfig) {
     const validatorPattern = new RegExp(commitPrefixConfig.validator);
     const prefixOptions = getPrefixOptions(commitPrefixConfig);
 
-    let prompts = [
+    let commitTitleLinePrompts = [
         {
             name: 'commitMessage',
-            type: 'editor',
+            type: 'input',
             message: 'Commit message:',
             validate: createValidator(validatorPattern)
         }
     ];
 
     if(prefixOptions.length > 0) {
-        prompts.unshift({
+        commitTitleLinePrompts.unshift({
             name: 'prefix',
             message: 'What did you do?',
             type: 'list',
@@ -49,7 +71,25 @@ function getCommitInfo(commitPrefixConfig) {
         });
     }
 
-    return inquirer.prompt(prompts);
+    return inquirer
+        .prompt(commitTitleLinePrompts)
+        .then(function(commitValues){
+            const commitTitle = commitValues.commitMessage.replace(/^"?(.*)"?$/, '$1');
+
+            console.log(`Commit title: ${commitTitle}`)
+            
+            if(/^".*[^"]$/.test()) {
+                return getCommitBody()
+                    .then(commitBody => `${commitTitle}${commitBody}`)
+                    .then(commitMessage => {
+                        commitValues.commitMessage = commitMessage
+                        return commitValues;
+                    });
+            } else {
+                commitValues.commitMessage = commitTitle;
+                return commitValues;
+            }
+        });
 }
 
 function createNewCommit(commitMessage) {
