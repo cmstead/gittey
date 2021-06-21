@@ -82,7 +82,7 @@ function getCommitInfo() {
     if(collaborators.length > 0) {
         commitTitleLinePrompts.unshift({
             name: 'collaborators',
-            message: 'Who collaborated on this?',
+            message: 'Who collaborated on this commit?',
             type: 'checkbox',
             choices: collaborators
         });
