@@ -80,6 +80,11 @@ module.exports = [
         description: "Add collaborator to list of team collaborators",
         type: Boolean
     },
+    {
+        name: "remove-collaborators",
+        description: "Remove collaborators from list of team collaborators",
+        type: Boolean
+    },
     { 
         name: "branch-prefixes",
         description: "Display branch prefixes and descriptions",
