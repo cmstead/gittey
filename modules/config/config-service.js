@@ -4,7 +4,13 @@ let config = null;
 
 function initializeConfig() {
     if(config === null) {
-        config = readConfig();
+        existingConfig = readConfig();
+        emptyConfig = readEmptyConfig();
+
+        config = {
+            ...emptyConfig,
+            ...existingConfig
+        };
     }
 }
 
