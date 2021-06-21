@@ -28,13 +28,13 @@ function buildCommitMessage(commitData) {
         ? commitPrefix.separator
         : '';
 
-    // console.log(`Type: ${typeof commitData.collaborators}`);
+    console.log(`Type: ${typeof commitData.collaborators}`);
 
-    // const collaboratorInfo = Array.isArray(commitData.collaborators) && commitData.collaborators.length > 0
-    //     ? `\n\n${commitData.collaborators.map(name => `Co-authored-by: ${name}`).join('\n')}`
-    //     : '';
+    const collaboratorInfo = Array.isArray(commitData.collaborators) && commitData.collaborators.length > 0
+        ? `\n\n${commitData.collaborators.map(name => `Co-authored-by: ${name}`).join('\n')}`
+        : '';
 
-    return `${prefix}${separator}${originalCommitMessage}`; //${collaboratorInfo}`;
+    return `${prefix}${separator}${originalCommitMessage}${collaboratorInfo}`;
 
 }
 
