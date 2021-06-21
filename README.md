@@ -24,7 +24,7 @@ gittey init
 
 This will walk you though configuring branch annotations for Gittey and save a configuration file to your project. Be sure to commit the configuration so your team can use it too.
 
-## Example Configuration ##
+## Example Configuration (Current Gittey gittey-config.json) ##
 
 ```json
 {
@@ -58,23 +58,42 @@ This will walk you though configuring branch annotations for Gittey and save a c
     },
     "aliases": [
         {
+            "name": "update-branch",
+            "command": "gittey update-current-branch",
+            "description": "Pull changes from remote main and merge into current branch"
+        },
+        {
+            "name": "push-main",
+            "command": "git push origin main --tags",
+            "description": "Push to main and include all commit tags"
+        },
+        {
             "name": "push",
-            "command": "git push origin main --tags"
+            "command": "gittey commit; git push",
+            "description": "Commit all outstanding changes and push to remote"
+        },
+        {
+            "name": "pull",
+            "command": "gittey commit; git pull",
+            "description": "Commit all outstanding changes and pull from remote"
         },
         {
             "name": "publish-patch",
-            "command": "gittey commit; npm version patch; npm publish; gittey push"
+            "command": "gittey commit; npm version patch; npm publish; gittey push-main",
+            "description": "Commit outstanding changes, bump patch version, publish, and push"
         },
         {
             "name": "publish-minor",
-            "command": "gittey commit; npm version minor; npm publish; gittey push"
+            "command": "gittey commit; npm version minor; npm publish; gittey push-main",
+            "description": "Commit outstanding changes, bump minor version, publish, and push"
         },
         {
             "name": "publish-major",
-            "command": "gittey commit; npm version major; npm publish; gittey push"
+            "command": "gittey commit; npm version major; npm publish; gittey push-main",
+            "description": "Commit outstanding changes, bump major version, publish, and push"
         }
     ],
-    "collaborators": ["@cmstead"]
+    "collaborators": []
 }
 ```
 

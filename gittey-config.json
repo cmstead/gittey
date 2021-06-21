@@ -30,35 +30,38 @@
     "aliases": [
         {
             "name": "update-branch",
-            "command": "gittey update-current-branch"
+            "command": "gittey update-current-branch",
+            "description": "Pull changes from remote main and merge into current branch"
         },
         {
             "name": "push-main",
-            "command": "git push origin main --tags"
+            "command": "git push origin main --tags",
+            "description": "Push to main and include all commit tags"
         },
         {
             "name": "push",
-            "command": "gittey commit; gittey push-main"
+            "command": "gittey commit; git push",
+            "description": "Commit all outstanding changes and push to remote"
         },
         {
             "name": "pull",
-            "command": "gittey commit; git pull"
-        },
-        {
-            "name": "commit-and-push",
-            "command": "gittey commit; gittey push-main"
+            "command": "gittey commit; git pull",
+            "description": "Commit all outstanding changes and pull from remote"
         },
         {
             "name": "publish-patch",
-            "command": "gittey commit; npm version patch; npm publish; gittey push-main"
+            "command": "gittey commit; npm version patch; npm publish; gittey push-main",
+            "description": "Commit outstanding changes, bump patch version, publish, and push"
         },
         {
             "name": "publish-minor",
-            "command": "gittey commit; npm version minor; npm publish; gittey push-main"
+            "command": "gittey commit; npm version minor; npm publish; gittey push-main",
+            "description": "Commit outstanding changes, bump minor version, publish, and push"
         },
         {
             "name": "publish-major",
-            "command": "gittey commit; npm version major; npm publish; gittey push-main"
+            "command": "gittey commit; npm version major; npm publish; gittey push-main",
+            "description": "Commit outstanding changes, bump major version, publish, and push"
         }
     ],
     "collaborators": []

@@ -15,7 +15,7 @@ module.exports = (aliases = []) => {
     aliases.forEach(function (alias) {
         options.push({
             name: alias.name,
-            description: 'User defined command',
+            description: alias.description ? `alias: ${alias.description}` : 'User defined command',
             type: Boolean
         });
     });
