@@ -73,7 +73,8 @@ This will walk you though configuring branch annotations for Gittey and save a c
             "name": "publish-major",
             "command": "gittey commit; npm version major; npm publish; gittey push"
         }
-    ]
+    ],
+    "collaborators": ["@cmstead"]
 }
 ```
 
@@ -132,6 +133,8 @@ This will walk you though configuring branch annotations for Gittey and save a c
     - Provide canned Arlo-style annotations
     - Commit message annotation key visualization
     - Custom commit annotation prefixing
+- Commit collaborators
+    - Select all commit collaborators from list defined in `gittey-config.json`
 - Custom git aliases
     - Runnable aliases with `gittey --aliasName`
     - Add new aliases via command line
@@ -147,7 +150,7 @@ This will walk you though configuring branch annotations for Gittey and save a c
 ### New Feature List ###
 
 - [ ] Collaborator mode
-    - [ ] Select collaborators
+    - [x] Select collaborators
     - [ ] Add collaborator
     - [ ] Remove collaborator
 - [ ] Remote repo management
