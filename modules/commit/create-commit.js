@@ -23,12 +23,16 @@ function buildCommitMessage(commitData) {
     const prefix = typeof commitData.prefix === 'string'
         ? commitData.prefix.split(' - ')[0]
         : '';
-    const name = commitData.commitMessage;
+    const originalCommitMessage = commitData.commitMessage;
     const separator = prefix.trim() !== ''
         ? commitPrefix.separator
         : '';
 
-    return `${prefix}${separator}${name}`;
+    const collaboratorInfo = commitData.collaborators.length > 0
+        ? `\n\nCollaborators: ${commitData.collaborators.join(', ')}`
+        : '';
+
+    return `${prefix}${separator}${originalCommitMessage}${collaboratorInfo}`;
 
 }
 
@@ -59,7 +63,7 @@ function getCommitBody(lastBodyContent = '') {
 }
 
 function getCommitInfo() {
-    const { commitPrefix } = configService.getConfig();
+    const { commitPrefix, collaborators } = configService.getConfig();
 
     const validatorPattern = new RegExp(commitPrefix.validator);
     const prefixOptions = getPrefixOptions();
@@ -73,12 +77,21 @@ function getCommitInfo() {
         }
     ];
 
+    if(collaborators.length > 0) {
+        commitTitleLinePrompts.unshift({
+            name: 'collaborators',
+            message: 'Who collaborated on this?',
+            type: 'checkbox',
+            choices: collaborators
+        });
+    }
+
     if(prefixOptions.length > 0) {
         commitTitleLinePrompts.unshift({
             name: 'prefix',
             message: 'What did you do?',
             type: 'list',
-            choices: getPrefixOptions()
+            choices: prefixOptions
         });
     }
 
