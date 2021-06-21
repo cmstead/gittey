@@ -61,7 +61,5 @@
             "command": "gittey commit; npm version major; npm publish; gittey push-main"
         }
     ],
-    "collaborators": [
-        "@cmstead"
-    ]
+    "collaborators": []
 }

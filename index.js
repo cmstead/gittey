@@ -6,7 +6,7 @@ const { match } = require('matchlight');
 
 const package = require('./package.json');
 
-const { configureBranchPrefixes, configureCommitPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
+const { configureBranchPrefixes, configureCollaborators, configureCommitPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
 const aliasConfig = require('./modules/setup/alias-config');
 const branchPrefixes = require('./modules/help/branch-prefixes');
 const branchService = require('./modules/branch/branch-service');
@@ -43,6 +43,7 @@ new Promise(function (resolve) {
             onCase({ ['init']: true },
                 () => configureBranchPrefixes()
                     .then(() => configureCommitPrefixes())
+                    .then(() => configureCollaborators())
                     .then(() => console.log('Gittey has been configured for this project.')));
 
             onCase({ ['clone']: true },
