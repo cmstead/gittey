@@ -105,7 +105,7 @@ This will walk you though configuring branch annotations for Gittey and save a c
 "aliases": [
     {
         "name": "pull",
-        "command": "gittey commit; git ull"
+        "command": "gittey commit; git pull"
     }
 ]
 
@@ -146,11 +146,10 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 ### New Feature List ###
 
-- [x] Clone
-    - [x] Clone from URL (standard clone w/ prompt)
-    - [x] Clone from GitHub by username
-- [x] Revert commits
 - [ ] Collaborator mode
+    - [ ] Select collaborators
+    - [ ] Add collaborator
+    - [ ] Remove collaborator
 - [ ] Remote repo management
     - [ ] Add remote repo
     - [ ] Remove remote repo
@@ -161,6 +160,8 @@ This will walk you though configuring branch annotations for Gittey and save a c
     - [ ] Update from secondary remote
     - [ ] Push to secondary remote
     - [ ] Commit and push
+    - [ ] Commit and pull
+    - [ ] Reset
 
 ## CLI Options ##
 
