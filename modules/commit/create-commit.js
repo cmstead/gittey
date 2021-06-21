@@ -65,6 +65,8 @@ function getCommitBody(lastBodyContent = '') {
 function getCommitInfo() {
     const { commitPrefix, collaborators } = configService.getConfig();
 
+    console.log(`Collaborators list: ${collaborators}`);
+
     const validatorPattern = new RegExp(commitPrefix.validator);
     const prefixOptions = getPrefixOptions();
 
