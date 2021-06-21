@@ -28,8 +28,6 @@ function buildCommitMessage(commitData) {
         ? commitPrefix.separator
         : '';
 
-    console.log(`Type: ${typeof commitData.collaborators}`);
-
     const collaboratorInfo = Array.isArray(commitData.collaborators) && commitData.collaborators.length > 0
         ? `\n\n${commitData.collaborators.map(name => `Co-authored-by: ${name}`).join('\n')}`
         : '';
@@ -66,8 +64,6 @@ function getCommitBody(lastBodyContent = '') {
 
 function getCommitInfo() {
     const { commitPrefix, collaborators } = configService.getConfig();
-
-    console.log(`Collaborators list: ${collaborators}`);
 
     const validatorPattern = new RegExp(commitPrefix.validator);
     const prefixOptions = getPrefixOptions();
