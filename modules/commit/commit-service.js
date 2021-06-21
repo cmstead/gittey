@@ -9,14 +9,10 @@ const {
     verifyUserWantsToStageFiles
 } = require('./create-commit');
 
-const configService = require('../config/config-service');
-
 function commitSource() {
-    const { commitPrefix } = configService.getConfig();
-
-    return getCommitInfo(commitPrefix)
+    return getCommitInfo()
         .then(function (commitData) {
-            const branchName = buildCommitMessage(commitData, commitPrefix);
+            const branchName = buildCommitMessage(commitData);
 
             return createNewCommit(branchName);
         })

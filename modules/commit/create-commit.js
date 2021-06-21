@@ -4,17 +4,22 @@ const { promisify } = require('util');
 const inquirer = require('inquirer');
 
 const { createValidator } = require('../shared/shared');
+const configService = require('../config/config-service');
 
 const exec = promisify(childProcess.exec);
 
-function getPrefixOptions(commitPrefix) {
+function getPrefixOptions() {
+    const { commitPrefix } = configService.getConfig();
+
     return Object.keys(commitPrefix.prefixes)
         .map(function (key) {
             return `${key} - ${commitPrefix.prefixes[key]}`;
         });
 }
 
-function buildCommitMessage(commitData, commitPrefix) {
+function buildCommitMessage(commitData) {
+    const { commitPrefix } = configService.getConfig();
+
     const prefix = typeof commitData.prefix === 'string'
         ? commitData.prefix.split(' - ')[0]
         : '';
@@ -53,9 +58,11 @@ function getCommitBody(lastBodyContent = '') {
         });
 }
 
-function getCommitInfo(commitPrefixConfig) {
-    const validatorPattern = new RegExp(commitPrefixConfig.validator);
-    const prefixOptions = getPrefixOptions(commitPrefixConfig);
+function getCommitInfo() {
+    const { commitPrefix } = configService.getConfig();
+
+    const validatorPattern = new RegExp(commitPrefix.validator);
+    const prefixOptions = getPrefixOptions();
 
     let commitTitleLinePrompts = [
         {
@@ -71,7 +78,7 @@ function getCommitInfo(commitPrefixConfig) {
             name: 'prefix',
             message: 'What did you do?',
             type: 'list',
-            choices: getPrefixOptions(commitPrefixConfig)
+            choices: getPrefixOptions()
         });
     }
 
