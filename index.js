@@ -8,6 +8,7 @@ const package = require('./package.json');
 
 const { configureBranchPrefixes, configureCollaborators, configureCommitPrefixes, clearConfig } = require('./modules/setup/configure-gittey');
 const aliasConfig = require('./modules/setup/alias-config');
+const { addCollaborator } = require('./modules/setup/collaborator-config');
 const branchPrefixes = require('./modules/help/branch-prefixes');
 const branchService = require('./modules/branch/branch-service');
 const cloneService = require('./modules/clone/clone-service');
@@ -45,6 +46,9 @@ new Promise(function (resolve) {
                     .then(() => configureCommitPrefixes())
                     .then(() => configureCollaborators())
                     .then(() => console.log('Gittey has been configured for this project.')));
+
+            onCase({ ['add-collaborator']: true}, 
+                () => addCollaborator());
 
             onCase({ ['clone']: true },
                 () => cloneService.clone());

@@ -75,6 +75,11 @@ module.exports = [
         description: "Initialize Gittey configuration in your project",
         type: Boolean
     },
+    {
+        name: "add-collaborator",
+        description: "Add collaborator to list of team collaborators",
+        type: Boolean
+    },
     { 
         name: "branch-prefixes",
         description: "Display branch prefixes and descriptions",
