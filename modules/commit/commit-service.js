@@ -11,54 +11,46 @@ const {
 
 function commitSource() {
     return getCommitInfo()
-        .then(function (commitData) {
-            const branchName = buildCommitMessage(commitData);
+        .then(commitData => buildCommitMessage(commitData))
+        .then(branchName => createNewCommit(branchName))
 
-            return createNewCommit(branchName);
-        })
+        .then((commitMessage) => console.log(`Commit complete: "${commitMessage}"`))
+        .catch((error) => console.log('Unable to create commit', error));
+}
 
-        .then(function (commitMessage) {
-            console.log(`Commit complete: "${commitMessage}"`);
-        })
-        
-        .catch(function (error) {
-            console.log('Unable to create commit', error);
-        });
+function promptUserToStageFiles() {
+    return showStatus()
+        .then(({ stdout }) => console.log(`\nUnstaged file status:\n\n${stdout}`))
+        .then(() => verifyUserWantsToStageFiles());
+}
+
+function handleUnstagedFiles() {
+    const doNotStageFiles = false;
+    const doNothing = null;
+
+    return areThereUnstagedFiles()
+        .then((unstagedFilesExist) =>
+            unstagedFilesExist
+                ? promptUserToStageFiles()
+                : doNotStageFiles)
+
+        .then((userWantsToStageFiles) =>
+            userWantsToStageFiles
+                ? stageFiles()
+                : doNothing);
+}
+
+function commitStagedFiles() {
+    return areThereChangesToCommit()
+        .then((changesExist) =>
+            changesExist
+                ? commitSource()
+                : console.log('No changes to commit.'))
 }
 
 function createCommit() {
-    return areThereUnstagedFiles()
-    .then(function(unstagedFilesExist){
-        if(unstagedFilesExist) {
-            return showStatus()
-            .then(({ stdout }) => console.log(`\nUnstaged file status:\n\n${stdout}`))
-            .then(() => verifyUserWantsToStageFiles());
-        } else {
-            return false;
-        }
-    })
-
-    .then(function(userWantsToStageFiles){
-        if(userWantsToStageFiles) {
-            return stageFiles();
-        } else {
-            return null;
-        }
-    })
-
-    .then(function(){
-        return areThereChangesToCommit();
-    })
-
-    .then(function(changesExist){
-        if(!changesExist) {
-            console.log('No changes to commit.');
-            return;
-        } else {
-            return commitSource();
-        }
-        
-    })
+    return handleUnstagedFiles()
+        .then(() => commitStagedFiles());
 }
 
 module.exports = {
