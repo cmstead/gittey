@@ -1,4 +1,5 @@
 const { buildBranchName, createNewBranch, getBranchInfo } = require('./create-branch');
+const { checkoutBranch } = require('./checkout-branch');
 const { deleteBranchBySelectedName, pruneBranches } = require('./delete-branch');
 const { updateCurrentBranch } = require('./update-current-branch');
 const { mergeFromBranch } = require('./merge-from-branch');
@@ -25,6 +26,7 @@ function createBranch() {
 }
 
 module.exports = {
+    checkoutBranch,
     createBranch,
     deleteBranch: deleteBranchBySelectedName,
     mergeFromBranch,

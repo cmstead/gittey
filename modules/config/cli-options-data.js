@@ -95,6 +95,11 @@ module.exports = [
         description: "Display commit prefixes and descriptions",
         type: Boolean
     },
+    { 
+        name: "checkout",
+        description: "Check out a branch from list",
+        type: Boolean
+    },
     {
         name: "new-branch",
         description: "Create a new branch using defined configuration",

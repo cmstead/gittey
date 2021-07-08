@@ -38,6 +38,9 @@ new Promise(function (resolve) {
             onCase({ ['new-branch']: true },
                 () => branchService.createBranch());
 
+            onCase({ ['checkout']: true },
+                () => branchService.checkoutBranch());
+
             onCase({ ['commit']: true },
                 () => commitService.createCommit());
 
