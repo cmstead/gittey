@@ -24,6 +24,8 @@ var { revertCommits } = require('./modules/revert/revert-service');
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
 
+const args = cliOptions.args || [];
+
 new Promise(function (resolve) {
     resolve(true);
 })
@@ -36,7 +38,7 @@ new Promise(function (resolve) {
                 () => aliasConfig.deleteAlias());
 
             onCase({ ['new-branch']: true },
-                () => branchService.createBranch());
+                () => branchService.createBranch(args));
 
             onCase({ ['checkout']: true },
                 () => branchService.checkoutBranch());

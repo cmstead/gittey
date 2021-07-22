@@ -3,12 +3,19 @@ const { promisify } = require('util');
 
 const inquirer = require('inquirer');
 
-const { createValidator } = require('../shared/shared');
+const configService = require('../config/config-service');
 
-function getPrefixOptions(branchPrefix) {
+const { createValidator } = require('../shared/shared');
+const { branchPrefix } = configService.getConfig();
+
+function buildPrefixOption(key) {
+    return `${key} - ${branchPrefix.prefixes[key]}`;
+}
+
+function getPrefixOptions() {
     return Object.keys(branchPrefix.prefixes)
         .map(function (key) {
-            return `${key} - ${branchPrefix.prefixes[key]}`;
+            return buildPrefixOption(key);
         });
 }
 
@@ -34,12 +41,23 @@ function getBranchInfo(branchPrefixConfig) {
     ];
 
     if(prefixOptions.length > 0) {
-        prompts.unshift({
+        const prefixPrompt = {
             name: 'prefix',
             message: 'What are you working on?',
             type: 'list',
             choices: getPrefixOptions(branchPrefixConfig)
-        })
+        }
+
+        if(args.length > 1 
+            && args[0] === '--prefix' 
+            && typeof branchPrefix.prefixes[args1] !== 'undefind') {
+
+            const prefixDefault = buildPrefixOption(args[1]);
+
+            prefixPrompt.default = prefixDefault;
+        }
+
+        prompts.unshift(prefixPrompt)
     }
 
     return inquirer.prompt(prompts);

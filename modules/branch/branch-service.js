@@ -8,10 +8,10 @@ const { mergeToTemp } = require('./merge-to-temp');
 
 const configService = require('../config/config-service');
 
-function createBranch() {
+function createBranch(args) {
     const { branchPrefix } = configService.getConfig();
 
-    getBranchInfo(branchPrefix)
+    getBranchInfo(branchPrefix, args)
         .then(function (branchData) {
             const branchName = buildBranchName(branchData, branchPrefix);
 
