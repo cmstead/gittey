@@ -24,7 +24,7 @@ var { revertCommits } = require('./modules/revert/revert-service');
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
 
-const args = cliOptions.args || [];
+const args = cliOptions._unknown || [];
 
 new Promise(function (resolve) {
     resolve(true);

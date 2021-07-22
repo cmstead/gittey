@@ -2,11 +2,13 @@ const childProcess = require('child_process');
 const { promisify } = require('util');
 
 const inquirer = require('inquirer');
+const commandLineArgs = require('command-line-args');
 
 const configService = require('../config/config-service');
 
 const { createValidator } = require('../shared/shared');
 const { branchPrefix } = configService.getConfig();
+const cliOptions = require('./cli-options-data');
 
 function buildPrefixOption(key) {
     return `${key} - ${branchPrefix.prefixes[key]}`;
@@ -28,9 +30,15 @@ function buildBranchName(branchData, branchPrefix) {
 
 }
 
-function getBranchInfo(branchPrefixConfig) {
+function parseCliArgs(cliOptions, args) {
+    return commandLineArgs(cliOptions, { stopAtFirstUnknown: true, argv: args });
+}
+
+function getBranchInfo(branchPrefixConfig, args) {
     const validatorPattern = new RegExp(branchPrefixConfig.validator);
     const prefixOptions = getPrefixOptions(branchPrefixConfig);
+
+    const { prefix: prefixKey } = parseCliArgs(cliOptions, args)
 
     let prompts = [
         {
@@ -48,11 +56,9 @@ function getBranchInfo(branchPrefixConfig) {
             choices: getPrefixOptions(branchPrefixConfig)
         }
 
-        if(args.length > 1 
-            && args[0] === '--prefix' 
-            && typeof branchPrefix.prefixes[args1] !== 'undefind') {
+        if(typeof branchPrefix.prefixes[prefixKey] !== 'undefind') {
 
-            const prefixDefault = buildPrefixOption(args[1]);
+            const prefixDefault = buildPrefixOption(prefixKey);
 
             prefixPrompt.default = prefixDefault;
         }
