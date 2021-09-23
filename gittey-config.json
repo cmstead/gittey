@@ -50,17 +50,17 @@
         },
         {
             "name": "publish-patch",
-            "command": "gittey commit; npm version patch; npm publish; gittey push-main",
+            "command": "gittey commit; node ./version-bump patch; npm publish; gittey push-main",
             "description": "Commit outstanding changes, bump patch version, publish, and push"
         },
         {
             "name": "publish-minor",
-            "command": "gittey commit; npm version minor; npm publish; gittey push-main",
+            "command": "gittey commit; node ./version-bump minor; npm publish; gittey push-main",
             "description": "Commit outstanding changes, bump minor version, publish, and push"
         },
         {
             "name": "publish-major",
-            "command": "gittey commit; npm version major; npm publish; gittey push-main",
+            "command": "gittey commit; node ./version-bump major; npm publish; gittey push-main",
             "description": "Commit outstanding changes, bump major version, publish, and push"
         }
     ],

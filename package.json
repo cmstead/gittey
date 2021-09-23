@@ -1,31 +1,31 @@
 {
-  "name": "gittey",
-  "version": "0.25.0",
-  "description": "Git utils for enhanced worflows",
-  "main": "index.js",
-  "bin": {
-    "gittey": "./index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cmstead/gittey.git"
-  },
-  "keywords": [
-    "git",
-    "utilities",
-    "helpers"
-  ],
-  "author": "Chris Stead",
-  "license": "MPL-2.0",
-  "dependencies": {
-    "axios": "^0.21.0",
-    "chalk": "^4.1.0",
-    "command-line-args": "^5.1.1",
-    "command-line-usage": "^6.1.0",
-    "compare-versions": "^3.6.0",
-    "console.table": "^0.10.0",
-    "inquirer": "^7.3.3",
-    "matchlight": "^2.1.0",
-    "npm-api": "^1.0.0"
-  }
+    "name": "gittey",
+    "version": "0.26.0",
+    "description": "Git utils for enhanced worflows",
+    "main": "index.js",
+    "bin": {
+        "gittey": "./index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cmstead/gittey.git"
+    },
+    "keywords": [
+        "git",
+        "utilities",
+        "helpers"
+    ],
+    "author": "Chris Stead",
+    "license": "MPL-2.0",
+    "dependencies": {
+        "axios": "^0.21.0",
+        "chalk": "^4.1.0",
+        "command-line-args": "^5.1.1",
+        "command-line-usage": "^6.1.0",
+        "compare-versions": "^3.6.0",
+        "console.table": "^0.10.0",
+        "inquirer": "^7.3.3",
+        "matchlight": "^2.1.0",
+        "npm-api": "^1.0.0"
+    }
 }
