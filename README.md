@@ -169,9 +169,9 @@ This will walk you though configuring branch annotations for Gittey and save a c
 ### New Feature List ###
 
 - [ ] Remote repo management
-    - [ ] Add remote repo
+    - [x] Add remote repo
     - [ ] Remove remote repo
-    - [ ] Update remote repo URL
+    - [x] Update remote repo URL
     - [ ] List all remote repos
 
 ## CLI Options ##
@@ -196,6 +196,7 @@ Current options at the command line for Gittey:
 - `--prune-branches` - Menued branch cleanup
 - `--reset-configuration` - Reset configuration to default settings
 - `--revert-commits` - Revert recent commits
+- `--set-remote-uri` - Set or update remote repo URI
 - `--update` - Update to latest version
 - `--update-current-branch` - Update current branch with remote trunk changes
 - `-v`, `--version` - Display current version
