@@ -20,6 +20,7 @@ const { getCliOptions, getAliases } = require("./modules/runtime/runtime-helper"
 const { checkForUpdate } = require("./modules/runtime/version-service");
 const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
 var { revertCommits } = require('./modules/revert/revert-service');
+const { setRemoteUri } = require('./modules/remote/manage-remotes');
 
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
@@ -31,6 +32,8 @@ new Promise(function (resolve) {
 })
     .then(function () {
         match(cliOptions, function (onCase, onDefault) {
+            onCase({ ['set-remote-uri']: true }, () => setRemoteUri());
+
             onCase({ ['add-alias']: true },
                 () => aliasConfig.addAlias());
 

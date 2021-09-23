@@ -168,22 +168,11 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 ### New Feature List ###
 
-- [x] Collaborator mode
-    - [x] Select collaborators
-    - [x] Add collaborator
-    - [x] Remove collaborator
-- [ ] Emergency commit to temp branch and push
 - [ ] Remote repo management
     - [ ] Add remote repo
     - [ ] Remove remote repo
     - [ ] Update remote repo URL
     - [ ] List all remote repos
-- [ ] Pre-baked aliases
-    - [ ] Update from secondary remote
-    - [ ] Push to secondary remote
-    - [ ] Commit and push
-    - [ ] Commit and pull
-    - [ ] Reset
 
 ## CLI Options ##
 

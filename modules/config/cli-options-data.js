@@ -126,5 +126,10 @@ module.exports = [
         alias: 'v',
         description: 'Display current version',
         type: Boolean
+    },
+    {
+        name: 'set-remote-uri',
+        description: 'Set or update remote URI',
+        type: Boolean
     }
 ]

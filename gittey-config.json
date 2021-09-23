@@ -40,7 +40,7 @@
         },
         {
             "name": "push",
-            "command": "gittey commit; git push",
+            "command": "gittey pull; git push",
             "description": "Commit all outstanding changes and push to remote"
         },
         {
