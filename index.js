@@ -20,7 +20,7 @@ const { getCliOptions, getAliases } = require("./modules/runtime/runtime-helper"
 const { checkForUpdate } = require("./modules/runtime/version-service");
 const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
 var { revertCommits } = require('./modules/revert/revert-service');
-const { setRemoteUri } = require('./modules/remote/manage-remotes');
+const { setRemoteUri, removeRemote, listRemotes } = require('./modules/remote/manage-remotes');
 
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
@@ -32,7 +32,14 @@ new Promise(function (resolve) {
 })
     .then(function () {
         match(cliOptions, function (onCase, onDefault) {
-            onCase({ ['set-remote-uri']: true }, () => setRemoteUri());
+            onCase({ ['set-remote-uri']: true },
+                () => setRemoteUri());
+
+            onCase({ ['remove-remote']: true },
+                () => removeRemote());
+
+            onCase({ ['list-remotes']: true },
+                () => listRemotes());
 
             onCase({ ['add-alias']: true },
                 () => aliasConfig.addAlias());
@@ -55,10 +62,10 @@ new Promise(function (resolve) {
                     .then(() => configureCollaborators())
                     .then(() => console.log('Gittey has been configured for this project.')));
 
-            onCase({ ['add-collaborator']: true}, 
+            onCase({ ['add-collaborator']: true },
                 () => addCollaborator());
 
-            onCase({ ['remove-collaborators']: true}, 
+            onCase({ ['remove-collaborators']: true },
                 () => removeCollaborators());
 
             onCase({ ['clone']: true },

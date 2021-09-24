@@ -131,5 +131,15 @@ module.exports = [
         name: 'set-remote-uri',
         description: 'Set or update remote URI',
         type: Boolean
+    },
+    {
+        name: 'remove-remote',
+        description: 'Remove remote reference from local git repo',
+        type: Boolean
+    },
+    {
+        name: 'list-remotes',
+        description: 'List remotes for local git repo',
+        type: Boolean
     }
 ]

@@ -164,23 +164,21 @@ This will walk you though configuring branch annotations for Gittey and save a c
     - Configure commit prefix annotations
     - Reset Gittey configuration
     - Project init
+- Remote management
+    - Add and remove remote references
+    - Quickly list all remotes
 - Help/Man information
-
-### New Feature List ###
-
-- [ ] Remote repo management
-    - [x] Add remote repo
-    - [ ] Remove remote repo
-    - [x] Update remote repo URL
-    - [ ] List all remote repos
 
 ## CLI Options ##
 
 Current options at the command line for Gittey:
 
 - `--add-alias` - Add a new user-configured command alias
-- `--args` *string[]* - Arguments to supply to alias command
+- `--add-collaborator` - Add collaborator to list of team collaborators
+- `--args` - Arguments to supply to alias command
 - `--branch-prefixes` - Display branch prefixes and descriptions
+- `--checkout` - Check out a branch from list
+- `--clone` - Clone remote repository
 - `--commit` - Create a new branch using defined configuration
 - `--commit-prefixes` - Display commit prefixes and descriptions
 - `--configure-branch-annotations` - Create branch annotation prefixes
@@ -189,14 +187,17 @@ Current options at the command line for Gittey:
 - `--delete-branch` - Delete a branch
 - `-h`, `--help` - Display help info
 - `--init` - Initialize Gittey configuration in your project
+- `--list-remotes` - List remotes for local git repo
 - `--merge-from-branch` - Merge another branch into current branch
 - `--merge-to-branch` - Merge current branch into another branch
 - `--merge-to-temp` - Merge current branch and another branch into a temp branch
 - `--new-branch` - Create a new branch using defined configuration
 - `--prune-branches` - Menued branch cleanup
+- `--remove-collaborators` - Remove collaborators from list of team collaborators
+- `--remove-remote` - Remove remote reference from local git repo
 - `--reset-configuration` - Reset configuration to default settings
 - `--revert-commits` - Revert recent commits
-- `--set-remote-uri` - Set or update remote repo URI
+- `--set-remote-uri` - Set or update remote URI
 - `--update` - Update to latest version
 - `--update-current-branch` - Update current branch with remote trunk changes
 - `-v`, `--version` - Display current version

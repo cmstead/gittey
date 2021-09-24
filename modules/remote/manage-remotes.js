@@ -16,7 +16,7 @@ function getRemotes() {
             }, {}))
         .then((remoteMap) => Object.keys(remoteMap))
 
-        .catch(function (error) {
+        .catch(function () {
             console.log('Failed to query remote repository names')
         });
 }
@@ -52,6 +52,51 @@ function setRemoteUri() {
         });
 }
 
+function removeSelectedRemote(remotesList) {
+    return inquirer.prompt([
+        {
+            name: 'remoteToRemove',
+            type: 'list',
+            choices: remotesList,
+            message: 'Which remote do you want to remove?'
+        }
+    ])
+        .then(({ remoteToRemove }) => {
+            return promisify(exec).call(null, `git remote remove ${remoteToRemove}`);
+        })
+
+        .catch(function () {
+            console.log('Failed to remove selected remote');
+        });
+}
+function removeRemote() {
+    return getRemotes()
+        .then((remotesList) => {
+            if(remotesList.length > 0) {
+                return removeSelectedRemote(remotesList);
+            } else {
+                return null;
+            }
+        })
+
+        .catch(function () {
+            console.log('Something went wrong while attempting to remove a remote from local git');
+        });
+}
+
+function listRemotes() {
+    return getRemotes()
+        .then((remotesList) => {
+            console.log(remotesList.join('\n'));
+        })
+
+        .catch(function(error){
+            console.log('Something failed while trying to read remotes');
+        });
+}
+
 module.exports = {
+    listRemotes,
+    removeRemote,
     setRemoteUri
 };
