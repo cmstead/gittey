@@ -34,7 +34,7 @@ new Promise(function (resolve) {
     .then(function () {
         match(cliOptions, function (onCase, onDefault) {
             onCase({ ['rename-branch']: true },
-                () => renameCurrentBranch)
+                () => renameCurrentBranch())
 
             onCase({ ['set-remote-uri']: true },
                 () => setRemoteUri());
