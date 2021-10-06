@@ -141,5 +141,10 @@ module.exports = [
         name: 'list-remotes',
         description: 'List remotes for local git repo',
         type: Boolean
+    },
+    {
+        name: 'rename-branch',
+        description: 'Rename current branch',
+        type: Boolean
     }
 ]

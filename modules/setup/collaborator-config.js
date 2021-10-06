@@ -8,17 +8,17 @@ function addCollaborator() {
     return inquirer.prompt([
         {
             name: 'collaborator',
-            message: 'Collaborator\'s name:',
-        	validate: (collaborator) => {
-                return collaborator.length > 0;
-            }
+            message: 'Collaborator\'s name:'
         }
     ])
-    
-    .then(({collaborator}) => 
-        configService.updateConfig(
-            'collaborators',
-            collaborators.concat(collaborator)));
+
+        .then(({ collaborator }) => {
+            if(collaborator.length > 0) {
+                return configService.updateConfig(
+                    'collaborators',
+                    collaborators.concat(collaborator));
+            }
+        });
 }
 
 function removeCollaborators() {
@@ -32,11 +32,11 @@ function removeCollaborators() {
             choices: collaborators
         }
     ])
-    
-    .then(({selectedCollaborators}) => configService.updateConfig(
-        'collaborators',
-        collaborators.filter(collaborator => !selectedCollaborators.includes(collaborator))
-    ));
+
+        .then(({ selectedCollaborators }) => configService.updateConfig(
+            'collaborators',
+            collaborators.filter(collaborator => !selectedCollaborators.includes(collaborator))
+        ));
 }
 
 module.exports = {

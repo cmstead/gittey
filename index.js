@@ -21,6 +21,7 @@ const { checkForUpdate } = require("./modules/runtime/version-service");
 const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
 var { revertCommits } = require('./modules/revert/revert-service');
 const { setRemoteUri, removeRemote, listRemotes } = require('./modules/remote/manage-remotes');
+const { renameCurrentBranch } = require('./modules/branch/rename-current-branch');
 
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
@@ -32,6 +33,9 @@ new Promise(function (resolve) {
 })
     .then(function () {
         match(cliOptions, function (onCase, onDefault) {
+            onCase({ ['rename-branch']: true },
+                () => renameCurrentBranch)
+
             onCase({ ['set-remote-uri']: true },
                 () => setRemoteUri());
 
