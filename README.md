@@ -195,6 +195,7 @@ Current options at the command line for Gittey:
 - `--prune-branches` - Menued branch cleanup
 - `--remove-collaborators` - Remove collaborators from list of team collaborators
 - `--remove-remote` - Remove remote reference from local git repo
+- `--rename-branch` - Rename current branch
 - `--reset-configuration` - Reset configuration to default settings
 - `--revert-commits` - Revert recent commits
 - `--set-remote-uri` - Set or update remote URI
