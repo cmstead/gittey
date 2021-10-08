@@ -146,5 +146,10 @@ module.exports = [
         name: 'rename-branch',
         description: 'Rename current branch',
         type: Boolean
+    },
+    {
+        name: 'init-repo',
+        description: 'Initialize git repository with custom main branch name',
+        type: Boolean
     }
 ]

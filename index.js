@@ -22,6 +22,7 @@ const { registerUserCommands } = require('./modules/user-commands/user-commands-
 var { revertCommits } = require('./modules/revert/revert-service');
 const { setRemoteUri, removeRemote, listRemotes } = require('./modules/remote/manage-remotes');
 const { renameCurrentBranch } = require('./modules/branch/rename-current-branch');
+const { initRepo } = require('./modules/init/init-repo');
 
 const aliases = getAliases();
 const cliOptions = getCliOptions(aliases);
@@ -33,6 +34,9 @@ new Promise(function (resolve) {
 })
     .then(function () {
         match(cliOptions, function (onCase, onDefault) {
+            onCase({ ['init-repo']: true },
+                () => initRepo())
+
             onCase({ ['rename-branch']: true },
                 () => renameCurrentBranch())
 

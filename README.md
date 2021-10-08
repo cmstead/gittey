@@ -187,6 +187,7 @@ Current options at the command line for Gittey:
 - `--delete-branch` - Delete a branch
 - `-h`, `--help` - Display help info
 - `--init` - Initialize Gittey configuration in your project
+- `--init-repo` - Initialize git repository with custom main branch name
 - `--list-remotes` - List remotes for local git repo
 - `--merge-from-branch` - Merge another branch into current branch
 - `--merge-to-branch` - Merge current branch into another branch
