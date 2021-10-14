@@ -59,7 +59,7 @@ new Promise(function (resolve) {
                 () => branchService.createBranch(args));
 
             onCase({ ['checkout']: true },
-                () => branchService.checkoutBranch());
+                () => branchService.checkoutBranch(args, cliOptions));
 
             onCase({ ['commit']: true },
                 () => commitService.createCommit());

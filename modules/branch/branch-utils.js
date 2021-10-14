@@ -4,16 +4,16 @@ const { promisify } = require('util');
 
 const exec = promisify(childProcess.exec);
 
-function readBranchNames() {
-    const branchCommand = 'git branch';
+function readBranchNames(remote = false) {
+    const remoteFlag = remote ? ' -r' : '';
+    const branchCommand = `git branch${remoteFlag}`;
     const branchPrefixPattern = /^\s\s/;
 
     return exec(branchCommand)
-        .then(result => {
-            return result.stdout.split('\n')
-                .filter(branchName => branchPrefixPattern.test(branchName))
-                .map(branchName => branchName.replace(branchPrefixPattern, ''));
-        });
+        .then((result) => result.stdout.split('\n')
+            .filter(branchName => branchPrefixPattern.test(branchName))
+            .map(branchName => branchName.replace(branchPrefixPattern, ''))
+            .map((branchName) => remote ? branchName.split('/').slice(1).join('') : branchName));
 }
 
 function getCurrentBranch() {

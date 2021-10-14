@@ -11,8 +11,8 @@ function checkout(branchName) {
         .then(() => branchName);
 }
 
-function checkoutBranch() {
-    return readBranchNames()
+function checkoutBranch(_, { remote = false }) {
+    return readBranchNames(remote)
         .then(branchNames => {
             if (branchNames.length > 0) {
                 selectBranch(branchNames)

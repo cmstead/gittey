@@ -151,5 +151,10 @@ module.exports = [
         name: 'init-repo',
         description: 'Initialize git repository with custom main branch name',
         type: Boolean
+    },
+    {
+        name: 'remote',
+        description: 'Remote flag for branch tools',
+        type: Boolean
     }
 ]
