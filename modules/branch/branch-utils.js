@@ -13,7 +13,7 @@ function readBranchNames(remote = false) {
         .then((result) => result.stdout.split('\n')
             .filter(branchName => branchPrefixPattern.test(branchName))
             .map(branchName => branchName.replace(branchPrefixPattern, ''))
-            .map((branchName) => remote ? branchName.split('/').slice(1).join('') : branchName));
+            .map((branchName) => remote ? branchName.split('/').slice(1).join('/') : branchName));
 }
 
 function getCurrentBranch() {
