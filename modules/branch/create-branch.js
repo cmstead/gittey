@@ -22,7 +22,7 @@ function getPrefixOptions() {
 }
 
 function buildBranchName(branchData, branchPrefix) {
-    const prefix = branchData.prefix.split(' - ')[0];
+    const prefix = branchData.prefix ? branchData.prefix.split(' - ')[0] : '';
     const name = branchData.branchName;
     const separator = branchPrefix.separator;
 
