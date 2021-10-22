@@ -1,8 +1,5 @@
-const { promisify } = require('util');
-const { exec } = require('child_process');
 const inquirer = require('inquirer');
-
-const asyncExec = promisify(exec);
+const { execGitCommand } = require('../shared/git-runner');
 
 function getBranchName() {
     return inquirer.prompt([
@@ -19,12 +16,11 @@ function getBranchName() {
 }
 
 function renameBranch(branchName) {
-    return asyncExec(`git checkout -b ${branchName}`);
-        // .then(() => asyncExec(`git branch -D master`));
+    return execGitCommand(`git checkout -b ${branchName}`);
 }
 
 function initRepo() {
-    return asyncExec(`git init`)
+    return execGitCommand(`git init`)
         .then(() => getBranchName())
 
         .then((branchName) => {

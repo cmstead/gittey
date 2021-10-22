@@ -1,12 +1,11 @@
-const childProcess = require('child_process');
-const util = require('util');
+const { execGitCommand } = require('../shared/git-runner');
 
 const { readBranchNames, selectBranch, attemptMerge, getCurrentBranch } = require('./branch-utils');
 
 function checkoutBranch(branchName) {
     const gitCommand = `git checkout ${branchName}`;
 
-    return util.promisify(childProcess.exec)(gitCommand);
+    return execGitCommand(gitCommand);
 }
 
 function mergeToBranch() {

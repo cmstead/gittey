@@ -1,6 +1,3 @@
-const childProcess = require('child_process');
-const { promisify } = require('util');
-
 const axios = require('axios');
 const inquirer = require('inquirer');
 
@@ -99,8 +96,7 @@ function cloneRepository() {
 function cloneFromUrl(cloneUrl) {
     const gitCommand = `git clone ${cloneUrl}`;
 
-    return promisify(childProcess.exec)
-        .call(null, gitCommand);
+    return (gitCommand);
 }
 
 function clone() {

@@ -1,6 +1,3 @@
-const childProcess = require('child_process');
-const { promisify } = require('util');
-
 const inquirer = require('inquirer');
 const commandLineArgs = require('command-line-args');
 
@@ -9,6 +6,7 @@ const configService = require('../config/config-service');
 const { createValidator } = require('../shared/shared');
 const { branchPrefix } = configService.getConfig();
 const cliOptions = require('./cli-options-data');
+const { execGitCommand } = require('../shared/git-runner');
 
 function buildPrefixOption(key) {
     return `${key} - ${branchPrefix.prefixes[key]}`;
@@ -72,8 +70,7 @@ function getBranchInfo(branchPrefixConfig, args) {
 function createNewBranch(branchName) {
     const gitCommand = `git checkout -b ${branchName}`;
 
-    return promisify(childProcess.exec)
-        .call(null, gitCommand)
+    return execGitCommand(gitCommand)
         .then(() => branchName);
 }
 

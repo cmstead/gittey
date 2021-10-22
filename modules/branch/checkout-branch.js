@@ -1,13 +1,11 @@
-const childProcess = require('child_process');
-const { promisify } = require('util');
+const { execGitCommand } = require('../shared/git-runner');
 
 var { selectBranch, readBranchNames } = require('./branch-utils');
 
 function checkout(branchName) {
     const command = `git checkout ${branchName}`;
 
-    return promisify(childProcess.exec)
-        .call(null, command)
+    return execGitCommand(command)
         .then(() => branchName);
 }
 

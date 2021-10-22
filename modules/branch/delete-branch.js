@@ -1,8 +1,5 @@
-const childProcess = require('child_process');
 const inquirer = require('inquirer');
-const { promisify } = require('util');
-
-const exec = promisify(childProcess.exec);
+const { execGitCommand } = require('../shared/git-runner');
 
 const branchUtils = require('./branch-utils');
 
@@ -36,7 +33,7 @@ function deleteBranches([...branchNames]) {
     ])
         .then(function (result) {
             if (result.deleteOk.toLowerCase() === 'y') {
-                return exec(gitCommand);
+                return execGitCommand(gitCommand);
             } else {
                 console.log('Branch delete was canceled');
             }

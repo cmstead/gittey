@@ -1,11 +1,10 @@
-const { promisify } = require('util');
-const { exec } = require('child_process');
 const inquirer = require('inquirer');
+
+const { execGitCommand } = require('../shared/git-runner');
 
 
 function getRemotes() {
-    return promisify(exec)
-        .call(null, `git remote -v`)
+    return execGitCommand(`git remote -v`)
         .then(({ stdout }) => stdout
             .trim().split('\n')
             .reduce((remoteMap, line) => {
@@ -44,7 +43,7 @@ function setRemoteUri() {
                 ? `git remote set-url ${remoteName} ${remoteUri}`
                 : `git remote add ${remoteName} ${remoteUri}`;
 
-            return promisify(exec).call(null, command);
+            return execGitCommand(command);
         })
 
         .catch(function () {
@@ -62,7 +61,7 @@ function removeSelectedRemote(remotesList) {
         }
     ])
         .then(({ remoteToRemove }) => {
-            return promisify(exec).call(null, `git remote remove ${remoteToRemove}`);
+            return execGitCommand(`git remote remove ${remoteToRemove}`);
         })
 
         .catch(function () {

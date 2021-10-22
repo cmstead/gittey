@@ -1,12 +1,9 @@
-const childProcess = require('child_process');
-const { promisify } = require('util');
-
 const inquirer = require('inquirer');
 
 const { createValidator } = require('../shared/shared');
 const configService = require('../config/config-service');
 
-const exec = promisify(childProcess.exec);
+const { execGitCommand } = require('../shared/git-runner');
 
 function getPrefixOptions() {
     const { commitPrefix } = configService.getConfig();
@@ -47,14 +44,14 @@ function getCommitBody(lastBodyContent = '') {
 
     return inquirer
         .prompt(commitBodyPrompts)
-        .then(function({ commitBodyLine }) {
+        .then(function ({ commitBodyLine }) {
             const cleanCommitBodyLine = commitBodyLine.replace(/"$/, '');
 
             const commitBody = lastBodyContent === null
                 ? cleanCommitBodyLine
                 : `${lastBodyContent}\n${cleanCommitBodyLine}`;
 
-            if(/^.*"$/.test(commitBodyLine)) {
+            if (/^.*"$/.test(commitBodyLine)) {
                 return commitBody;
             } else {
                 return getCommitBody(commitBody);
@@ -77,7 +74,7 @@ function getCommitInfo() {
         }
     ];
 
-    if(collaborators.length > 0) {
+    if (collaborators.length > 0) {
         commitTitleLinePrompts.unshift({
             name: 'collaborators',
             message: 'Who collaborated on this commit?',
@@ -86,7 +83,7 @@ function getCommitInfo() {
         });
     }
 
-    if(prefixOptions.length > 0) {
+    if (prefixOptions.length > 0) {
         commitTitleLinePrompts.unshift({
             name: 'prefix',
             message: 'What did you do?',
@@ -97,10 +94,10 @@ function getCommitInfo() {
 
     return inquirer
         .prompt(commitTitleLinePrompts)
-        .then(function(commitValues){
+        .then(function (commitValues) {
             const commitTitle = commitValues.commitMessage.replace(/^"?(.*)"?$/, '$1');
 
-            if(/^".*[^"]$/.test(commitValues.commitMessage)) {
+            if (/^".*[^"]$/.test(commitValues.commitMessage)) {
                 return getCommitBody()
                     .then(commitBody => `${commitTitle}${commitBody}`)
                     .then(commitMessage => {
@@ -117,15 +114,14 @@ function getCommitInfo() {
 function createNewCommit(commitMessage) {
     const gitCommand = `git commit -m "${commitMessage}"`;
 
-    return exec
-        .call(null, gitCommand)
+    return execGitCommand(gitCommand)
         .then(() => commitMessage);
 }
 
 function areThereUnstagedFiles() {
     const gitCommand = 'git status --porcelain';
 
-    return exec(gitCommand)
+    return execGitCommand(gitCommand)
         .then(function (result) {
             const fileStatuses = result.stdout.split('\n')
 
@@ -141,7 +137,7 @@ function areThereUnstagedFiles() {
 function areThereChangesToCommit() {
     const gitCommand = 'git status --porcelain';
 
-    return exec(gitCommand)
+    return execGitCommand(gitCommand)
         .then(function (result) {
             return result.stdout.trim() !== '';
         })
@@ -172,13 +168,13 @@ function verifyUserWantsToStageFiles() {
 function stageFiles() {
     const gitCommand = 'git add --all';
 
-    return exec(gitCommand);
+    return execGitCommand(gitCommand);
 }
 
 function showStatus() {
     const gitCommand = 'git status --short';
 
-    return exec(gitCommand);
+    return execGitCommand(gitCommand);
 }
 
 module.exports = {

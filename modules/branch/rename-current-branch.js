@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const { getCurrentBranch } = require('./branch-utils');
-const { promisify } = require('util');
-const { exec } = require("child_process");
+const { execGitCommand } = require("../shared/git-runner");
 
 function renameCurrentBranch() {
     let currentBranchName = null;
@@ -18,8 +17,8 @@ function renameCurrentBranch() {
                     validate: (name) => name.length > 0
                 }
             ]))
-        .then(({ newBranchName }) => promisify(exec).call(null, `git checkout -b ${newBranchName}`))
-        .then(() => promisify(exec).call(null, `git branch -D ${currentBranchName}`))
+        .then(({ newBranchName }) => execGitCommand(`git checkout -b ${newBranchName}`))
+        .then(() => execGitCommand(`git branch -D ${currentBranchName}`))
 
         .catch(function (error) {
             console.log(`Cannot rename branch: ${error.message}`);

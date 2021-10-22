@@ -1,18 +1,14 @@
-const childProcess = require('child_process');
-const util = require('util');
-
 const inquirer = require('inquirer');
 
 const commitService = require('../commit/commit-service');
-
-const exec = util.promisify(childProcess.exec);
+const { execGitCommand } = require('../shared/git-runner');
 
 const logLinePattern = /^([^\s]+)\s(.*)/;
 
 function areThereUncommittedFiles() {
     const gitCommand = 'git status --porcelain';
 
-    return exec(gitCommand)
+    return execGitCommand(gitCommand)
         .then(function (result) {
             const fileStatuses = result.stdout
                 .split('\n')
@@ -30,7 +26,7 @@ function areThereUncommittedFiles() {
 function getLatestLogs() {
     const gitCommand = 'git log --pretty=oneline -20';
 
-    return exec(gitCommand)
+    return execGitCommand(gitCommand)
         .then(function (result) {
             const lines = result.stdout.split('\n').map(line => line.trim());
             return lines
@@ -69,7 +65,7 @@ function revert(selectedCommits) {
     const commitHashes = selectedCommits.map(commit => commit.hash).join(' ');
     const gitCommand = `git revert --no-commit ${commitHashes}`;
 
-    return exec(gitCommand);
+    return execGitCommand(gitCommand);
 }
 
 function commitRevert() {
