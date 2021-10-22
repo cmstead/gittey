@@ -161,5 +161,10 @@ module.exports = [
         name: 'verbose',
         description: '(Flag) Make all git commands visible when run',
         type: Boolean
-    }
+    },
+    {
+        name: 'set-verbose-mode',
+        description: 'Set project-level Gittey verbose mode',
+        type: Boolean
+    },
 ]

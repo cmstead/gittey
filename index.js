@@ -23,6 +23,7 @@ const { setRemoteUri, removeRemote, listRemotes } = require('./modules/remote/ma
 const { renameCurrentBranch } = require('./modules/branch/rename-current-branch');
 const { initRepo } = require('./modules/init/init-repo');
 const { loadCliOptions } = require('./modules/config/cli-options-service');
+const { setVerboseMode } = require('./modules/init/configure-verbose-mode');
 
 const { aliases, cliOptions, args } = loadCliOptions();
 
@@ -31,6 +32,9 @@ new Promise(function (resolve) {
 })
     .then(function () {
         match(cliOptions, function (onCase, onDefault) {
+            onCase({ ['set-verbose-mode']: true },
+                () => setVerboseMode())
+
             onCase({ ['init-repo']: true },
                 () => initRepo())
 

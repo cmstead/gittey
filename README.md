@@ -200,6 +200,8 @@ Current options at the command line for Gittey:
 - `--reset-configuration` - Reset configuration to default settings
 - `--revert-commits` - Revert recent commits
 - `--set-remote-uri` - Set or update remote URI
+- `--set-verbose-mode` - Set project-level Gittey verbose mode
 - `--update` - Update to latest version
 - `--update-current-branch` - Update current branch with remote trunk changes
+- `--verbose` - (Flag) Make all git commands visible when run
 - `-v`, `--version` - Display current version

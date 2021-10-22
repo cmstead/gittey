@@ -9,6 +9,7 @@
         "validator": "^.{1,50}$",
         "prefixes": {}
     },
+    "verboseMode": false,
     "aliases": [],
     "collaborators": []
 }

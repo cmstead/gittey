@@ -27,6 +27,7 @@
             "***": "Does not compile -- intermediate step"
         }
     },
+    "verboseMode": false,
     "aliases": [
         {
             "name": "update-branch",
