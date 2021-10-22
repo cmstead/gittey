@@ -28,8 +28,10 @@ function updateCurrentBranch() {
     const fetchedBranch = fetchTrunk();
 
     if (fetchedBranch !== null) {
-        attemptMerge(`origin/${fetchedBranch}`);
+        return attemptMerge(`origin/${fetchedBranch}`);
     }
+
+    return Promise.resolve(null);
 }
 
 module.exports = {

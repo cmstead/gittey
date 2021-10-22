@@ -154,7 +154,12 @@ module.exports = [
     },
     {
         name: 'remote',
-        description: 'Remote flag for branch tools',
+        description: '(Flag) Remote flag for branch tools',
+        type: Boolean
+    },
+    {
+        name: 'verbose',
+        description: '(Flag) Make all git commands visible when run',
         type: Boolean
     }
 ]

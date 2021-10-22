@@ -16,18 +16,15 @@ const commitPrefixes = require('./modules/help/commit-prefixes');
 const commitService = require('./modules/commit/commit-service');
 const helpOutput = require('./modules/help/help-output');
 
-const { getCliOptions, getAliases } = require("./modules/runtime/runtime-helper");
 const { checkForUpdate } = require("./modules/runtime/version-service");
 const { registerUserCommands } = require('./modules/user-commands/user-commands-service');
 var { revertCommits } = require('./modules/revert/revert-service');
 const { setRemoteUri, removeRemote, listRemotes } = require('./modules/remote/manage-remotes');
 const { renameCurrentBranch } = require('./modules/branch/rename-current-branch');
 const { initRepo } = require('./modules/init/init-repo');
+const { loadCliOptions } = require('./modules/config/cli-options-service');
 
-const aliases = getAliases();
-const cliOptions = getCliOptions(aliases);
-
-const args = cliOptions._unknown || [];
+const { aliases, cliOptions, args } = loadCliOptions();
 
 new Promise(function (resolve) {
     resolve(true);

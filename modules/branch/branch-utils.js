@@ -1,15 +1,12 @@
-const childProcess = require('child_process');
 const inquirer = require('inquirer');
-const { promisify } = require('util');
-
-const exec = promisify(childProcess.exec);
+const { execGitCommand } = require('../shared/git-runner');
 
 function readBranchNames(remote = false) {
     const remoteFlag = remote ? ' -r' : '';
     const branchCommand = `git branch${remoteFlag}`;
     const branchPrefixPattern = /^\s\s/;
 
-    return exec(branchCommand)
+    return execGitCommand(branchCommand)
         .then((result) => result.stdout.split('\n')
             .filter(branchName => branchPrefixPattern.test(branchName))
             .map(branchName => branchName.replace(branchPrefixPattern, ''))
@@ -20,7 +17,7 @@ function getCurrentBranch() {
     const branchCommand = 'git branch';
     const branchPrefixPattern = /^\*\s/;
 
-    return exec(branchCommand)
+    return execGitCommand(branchCommand)
         .then(result => {
             return result.stdout.split('\n')
                 .filter(branchName => branchPrefixPattern.test(branchName))
@@ -45,13 +42,10 @@ function selectBranch(branchNames, message = "Select a branch") {
 function attemptMerge(branchToMerge) {
     const gitCommand = `git merge ${branchToMerge}`;
 
-    try {
-        childProcess.execSync(gitCommand);
-
-        console.log('Update completed successfully');
-    } catch (e) {
-        console.log(`Failed to merge changes from ${branchToMerge}`, e);
-    }
+    return execGitCommand(gitCommand)
+        .catch((error) => {
+            console.log(`Failed to merge changes from ${branchToMerge}`, error);
+        });
 }
 
 module.exports = {
