@@ -1,5 +1,6 @@
 const axios = require('axios');
 const inquirer = require('inquirer');
+const { execGitCommand } = require('../shared/git-runner');
 
 function getCloneUrl() {
     return inquirer
@@ -96,7 +97,7 @@ function cloneRepository() {
 function cloneFromUrl(cloneUrl) {
     const gitCommand = `git clone ${cloneUrl}`;
 
-    return (gitCommand);
+    return execGitCommand(gitCommand);
 }
 
 function clone() {
