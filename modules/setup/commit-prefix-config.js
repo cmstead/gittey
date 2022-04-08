@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const { match } = require('matchlight');
 const arloPrefixes = require('../../default-configurations/arlo-notation.json');
+const simpleArloPrefixes = require('../../default-configurations/simplified-arlo-notation.json');
 const conventionalCommits = require('../../default-configurations/simplified-conventional-commits.json');
 
 function getPrefixSetup() {
@@ -86,6 +87,7 @@ function getPrefixPreference() {
             type: 'list',
             choices: [
                 'Arlo Commit Annotations',
+                'Simplified Arlo Commit Annotations',
                 'Simplified Conventional Commits',
                 'Custom Annotations'
             ]
@@ -110,7 +112,10 @@ function getCommitPrefixConfig() {
         .then(function(result){
             const prefixPreference = result.prefixPreference.toLowerCase();
 
-            if(prefixPreference.includes('arlo')) {
+            if(prefixPreference.includes('simplified')) {
+                return simpleArloPrefixes;
+            }
+            else if(prefixPreference.includes('arlo')) {
                 return arloPrefixes;
             } else if (prefixPreference.includes('conventional')) {
                 return conventionalCommits;
