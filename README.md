@@ -164,6 +164,7 @@ This will walk you though configuring branch annotations for Gittey and save a c
     - Configure commit prefix annotations
     - Reset Gittey configuration
     - Project init
+    - user global configuration now supported
 - Remote management
     - Add and remove remote references
     - Quickly list all remotes
