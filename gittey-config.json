@@ -11,6 +11,12 @@
     "commitPrefix": {
         "separator": " ",
         "validator": ".{1,45}",
+        "custom": {
+            "prefix": "(",
+            "suffix": ")",
+            "prompt": "Custom prefix testing",
+            "validator": "^.+$"
+        },
         "prefixes": {
             "F": "Feature (<= 8 LoC)",
             "B": "Bug fix (<= 8 LoC)",

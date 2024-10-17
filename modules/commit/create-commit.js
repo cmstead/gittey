@@ -14,11 +14,20 @@ function getPrefixOptions() {
         });
 }
 
+function getPrefixCustomOption() {
+    const { commitPrefix } = configService.getConfig();
+
+    return commitPrefix.custom;
+}
+
 function buildCommitMessage(commitData) {
     const { commitPrefix } = configService.getConfig();
 
     const prefix = typeof commitData.prefix === 'string'
         ? commitData.prefix.split(' - ')[0]
+        : '';
+    const prefixCustom = typeof commitData.prefixCustom === 'string'
+        ? commitPrefix.custom.prefix + commitData.prefixCustom + commitPrefix.custom.suffix
         : '';
     const originalCommitMessage = commitData.commitMessage;
     const separator = prefix.trim() !== ''
@@ -29,7 +38,7 @@ function buildCommitMessage(commitData) {
         ? `\n\n${commitData.collaborators.map(name => `Co-authored-by: ${name}`).join('\n')}`
         : '';
 
-    return `${prefix}${separator}${originalCommitMessage}${collaboratorInfo}`;
+    return `${prefix}${prefixCustom}${separator}${originalCommitMessage}${collaboratorInfo}`;
 
 }
 
@@ -64,7 +73,8 @@ function getCommitInfo() {
 
     const validatorPattern = new RegExp(commitPrefix.validator);
     const prefixOptions = getPrefixOptions();
-
+    const prefixCustomOption = getPrefixCustomOption();
+    
     let commitTitleLinePrompts = [
         {
             name: 'commitMessage',
@@ -73,7 +83,7 @@ function getCommitInfo() {
             validate: createValidator(validatorPattern)
         }
     ];
-
+    
     if (collaborators.length > 0) {
         commitTitleLinePrompts.unshift({
             name: 'collaborators',
@@ -81,6 +91,16 @@ function getCommitInfo() {
             type: 'checkbox',
             choices: collaborators
         });
+    }
+    
+    if(prefixCustomOption && prefixCustomOption.prompt) {
+        const customPrefixValidatorPattern = new RegExp(prefixCustomOption.validator);
+        commitTitleLinePrompts.unshift({
+            name: 'prefixCustom',
+            message: prefixCustomOption.prompt,
+            type: 'input',
+            validate: createValidator(customPrefixValidatorPattern)
+        });        
     }
 
     if (prefixOptions.length > 0) {
@@ -91,7 +111,7 @@ function getCommitInfo() {
             choices: prefixOptions
         });
     }
-
+    
     return inquirer
         .prompt(commitTitleLinePrompts)
         .then(function (commitValues) {
