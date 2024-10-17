@@ -2,6 +2,12 @@
     "branchPrefix": {
         "separator": "-",
         "validator": "",
+        "custom": {
+            "prefix": "-",
+            "suffix": "-",
+            "prompt": "Custom branch prefix testing",
+            "validator": "^.+$"
+        },
         "prefixes": {
             "Bug": "Bug Fix",
             "Fea": "New Feature",
@@ -14,7 +20,7 @@
         "custom": {
             "prefix": "(",
             "suffix": ")",
-            "prompt": "Custom prefix testing",
+            "prompt": null,
             "validator": "^.+$"
         },
         "prefixes": {

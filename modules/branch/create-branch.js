@@ -1,21 +1,18 @@
 const inquirer = require('inquirer');
 const commandLineArgs = require('command-line-args');
 
-const configService = require('../config/config-service');
-
 const { createValidator } = require('../shared/shared');
-const { branchPrefix } = configService.getConfig();
 const cliOptions = require('./cli-options-data');
 const { execGitCommand } = require('../shared/git-runner');
 
-function buildPrefixOption(key) {
+function buildPrefixOption(branchPrefix, key) {
     return `${key} - ${branchPrefix.prefixes[key]}`;
 }
 
-function getPrefixOptions() {
+function getPrefixOptions(branchPrefix) {
     return Object.keys(branchPrefix.prefixes)
         .map(function (key) {
-            return buildPrefixOption(key);
+            return buildPrefixOption(branchPrefix, key);
         });
 }
 
@@ -23,8 +20,9 @@ function buildBranchName(branchData, branchPrefix) {
     const prefix = branchData.prefix ? branchData.prefix.split(' - ')[0] : '';
     const name = branchData.branchName;
     const separator = branchPrefix.separator;
+    const branchPrefixCustom = branchPrefix.custom;
 
-    return `${prefix}${separator}${name}`;
+    return `${prefix}${branchPrefixCustom.prefix}${branchData.prefixCustom}${branchPrefixCustom.suffix}${separator}${name}`;
 
 }
 
@@ -33,8 +31,11 @@ function parseCliArgs(cliOptions, args) {
 }
 
 function getBranchInfo(branchPrefixConfig, args) {
+
     const validatorPattern = new RegExp(branchPrefixConfig.validator);
     const prefixOptions = getPrefixOptions(branchPrefixConfig);
+    const prefixCustomOption = branchPrefixConfig.custom;
+
 
     const { prefix: prefixKey } = parseCliArgs(cliOptions, args)
 
@@ -46,6 +47,16 @@ function getBranchInfo(branchPrefixConfig, args) {
         }
     ];
 
+    if(prefixCustomOption && prefixCustomOption.prompt) {
+        const customPrefixValidatorPattern = new RegExp(prefixCustomOption.validator);
+        prompts.unshift({
+            name: 'prefixCustom',
+            message: prefixCustomOption.prompt,
+            type: 'input',
+            validate: createValidator(customPrefixValidatorPattern)
+        });        
+    }
+
     if(prefixOptions.length > 0) {
         const prefixPrompt = {
             name: 'prefix',
@@ -54,9 +65,9 @@ function getBranchInfo(branchPrefixConfig, args) {
             choices: getPrefixOptions(branchPrefixConfig)
         }
 
-        if(typeof branchPrefix.prefixes[prefixKey] !== 'undefind') {
+        if(typeof branchPrefixConfig.prefixes[prefixKey] !== 'undefind') {
 
-            const prefixDefault = buildPrefixOption(prefixKey);
+            const prefixDefault = buildPrefixOption(branchPrefixConfig, prefixKey);
 
             prefixPrompt.default = prefixDefault;
         }
