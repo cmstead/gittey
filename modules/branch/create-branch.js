@@ -21,8 +21,11 @@ function buildBranchName(branchData, branchPrefix) {
     const name = branchData.branchName;
     const separator = branchPrefix.separator;
     const branchPrefixCustom = branchPrefix.custom;
+    const customPrefix = branchPrefixCustom?.prefix || '';
+    const customSuffix = branchPrefixCustom?.suffix || '';
+    const customPrefixValue = branchData.prefixCustom || '';
 
-    return `${prefix}${branchPrefixCustom.prefix}${branchData.prefixCustom}${branchPrefixCustom.suffix}${separator}${name}`;
+    return `${prefix}${customPrefix}${customPrefixValue}${customSuffix}${separator}${name}`;
 
 }
 
@@ -65,7 +68,7 @@ function getBranchInfo(branchPrefixConfig, args) {
             choices: getPrefixOptions(branchPrefixConfig)
         }
 
-        if(typeof branchPrefixConfig.prefixes[prefixKey] !== 'undefind') {
+        if(typeof branchPrefixConfig.prefixes[prefixKey] !== 'undefined') {
 
             const prefixDefault = buildPrefixOption(branchPrefixConfig, prefixKey);
 
