@@ -131,6 +131,10 @@ new Promise(function (resolve) {
                 () =>
                     childProcess.execSync(`npm install gittey@latest -g`, { stdio: 'inherit' }));
 
+            onCase({ ['passthrough']: true },
+                () =>
+                    childProcess.execSync(`git ${args.join(' ')}`, { stdio: 'inherit' }));
+
             registerUserCommands(aliases, cliOptions, onCase);
 
             onDefault(() => {
@@ -144,4 +148,7 @@ new Promise(function (resolve) {
         if (!cliOptions.update) {
             checkForUpdate(package.version);
         }
+    })
+    .catch(function (error) {
+        process.exit(1);
     });

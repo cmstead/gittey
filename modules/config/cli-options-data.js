@@ -167,4 +167,9 @@ module.exports = [
         description: 'Set project-level Gittey verbose mode',
         type: Boolean
     },
+    {
+        name: 'passthrough',
+        description: 'passthrough',
+        type: Boolean
+    },
 ]

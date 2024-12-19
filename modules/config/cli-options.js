@@ -11,7 +11,6 @@ function addDashes(value) {
 }
 
 module.exports = (aliases = []) => {
-
     aliases.forEach(function (alias) {
         options.push({
             name: alias.name,
@@ -22,9 +21,17 @@ module.exports = (aliases = []) => {
 
     let args = process.argv.slice(2);
 
+    const knownOptions = options.map(function (option) {
+        return option.name;
+    });
+
+    if(!knownOptions.includes(args[0])) {
+        args.unshift('passthrough');
+    }
+
     args[0] = addDashes(args[0]);
 
-    const result = commandLineArgs(options, { stopAtFirstUnknown: true, argv: args });
+    const result = commandLineArgs(options, { caseInsensitive: true, stopAtFirstUnknown: true, argv: args });
 
     if(typeof result.args !== 'undefined' && typeof result._unknown !== 'undefined') {
         result.args = result.args.concat(result._unknown);
