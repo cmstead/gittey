@@ -131,11 +131,10 @@ function getCommitInfo() {
         });
 }
 
-function createNewCommit(commitMessage) {
-    const gitCommand = `git commit -m "${commitMessage}"`;
+function createNewCommit(commitMessage, args) {
+    const gitCommand = `git commit -m "${commitMessage}" ${args ? args.join(' ') : ''}`;
 
-    return execGitCommand(gitCommand)
-        .then(() => commitMessage);
+    return execGitCommand(gitCommand);
 }
 
 function areThereUnstagedFiles() {

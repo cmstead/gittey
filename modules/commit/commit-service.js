@@ -9,10 +9,12 @@ const {
     verifyUserWantsToStageFiles
 } = require('./create-commit');
 
-function commitSource() {
+const tap = (fn) => (value) => { fn(value); return value; };
+
+function commitSource(args) {
     return getCommitInfo()
         .then(commitData => buildCommitMessage(commitData))
-        .then(branchName => createNewCommit(branchName))
+        .then(tap(commitMessage => createNewCommit(commitMessage, args)))
 
         .then((commitMessage) => console.log(`Commit complete: "${commitMessage}"`))
         .catch((error) => console.log('Unable to create commit', error));
@@ -40,17 +42,17 @@ function handleUnstagedFiles() {
                 : doNothing);
 }
 
-function commitStagedFiles() {
+function commitStagedFiles(args) {
     return areThereChangesToCommit()
         .then((changesExist) =>
             changesExist
-                ? commitSource()
+                ? commitSource(args)
                 : console.log('No changes to commit.'))
 }
 
-function createCommit() {
+function createCommit(args) {
     return handleUnstagedFiles()
-        .then(() => commitStagedFiles());
+        .then(() => commitStagedFiles(args));
 }
 
 module.exports = {
