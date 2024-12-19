@@ -174,11 +174,15 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 Current options at the command line for Gittey:
 
+All git commands not specified here will pass through directly to git. This means all git commands are now available to gittey users without any effort.
+
 - `--add-alias` - Add a new user-configured command alias
 - `--add-collaborator` - Add collaborator to list of team collaborators
 - `--args` - Arguments to supply to alias command
 - `--branch-prefixes` - Display branch prefixes and descriptions
 - `--checkout` - Check out a branch from list
+    - `gittey checkout --remote` will provide remote branches available for checkout
+    - `gittey checkout <branchname>` will check out specified branch without prompting
 - `--clone` - Clone remote repository
 - `--commit` - Create a new branch using defined configuration
 - `--commit-prefixes` - Display commit prefixes and descriptions
