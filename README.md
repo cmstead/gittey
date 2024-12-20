@@ -136,6 +136,8 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 ### Current Features ###
 
+- Git pass-through transparency
+    - Git commands (and arguments) that are not handled by gittey will pass transparently through to git reducing the need to switch to git for more advanced git work; for example, history rewriting.
 - Branch annotations
     - Branch prefixing
     - Branch annotation key visualization
@@ -155,7 +157,7 @@ This will walk you though configuring branch annotations for Gittey and save a c
 - Commit collaborators
     - Select all commit collaborators from list defined in `gittey-config.json`
 - Custom git aliases
-    - Runnable aliases with `gittey --aliasName`
+    - Runnable aliases with `gittey aliasName`
     - Add new aliases via command line
     - Remove aliases via command line
 - Configuration
@@ -174,39 +176,38 @@ This will walk you though configuring branch annotations for Gittey and save a c
 
 Current options at the command line for Gittey:
 
-All git commands not specified here will pass through directly to git. This means all git commands are now available to gittey users without any effort.
-
-- `--add-alias` - Add a new user-configured command alias
-- `--add-collaborator` - Add collaborator to list of team collaborators
-- `--args` - Arguments to supply to alias command
-- `--branch-prefixes` - Display branch prefixes and descriptions
-- `--checkout` - Check out a branch from list
+- `add-alias` - Add a new user-configured command alias
+- `add-collaborator` - Add collaborator to list of team collaborators
+- `args` - Arguments to supply to alias command
+- `branch-prefixes` - Display branch prefixes and descriptions
+- `checkout` - Check out a branch from list
     - `gittey checkout --remote` will provide remote branches available for checkout
     - `gittey checkout <branchname>` will check out specified branch without prompting
-- `--clone` - Clone remote repository
-- `--commit` - Create a new branch using defined configuration
-- `--commit-prefixes` - Display commit prefixes and descriptions
-- `--configure-branch-annotations` - Create branch annotation prefixes
-- `--configure-commit-annotations` - Create commit annotation prefixes
-- `--delete-alias` - Delete a user-configured command alias
-- `--delete-branch` - Delete a branch
-- `-h`, `--help` - Display help info
-- `--init` - Initialize Gittey configuration in your project
-- `--init-repo` - Initialize git repository with custom main branch name
-- `--list-remotes` - List remotes for local git repo
-- `--merge-from-branch` - Merge another branch into current branch
-- `--merge-to-branch` - Merge current branch into another branch
-- `--merge-to-temp` - Merge current branch and another branch into a temp branch
-- `--new-branch` - Create a new branch using defined configuration
-- `--prune-branches` - Menued branch cleanup
-- `--remove-collaborators` - Remove collaborators from list of team collaborators
-- `--remove-remote` - Remove remote reference from local git repo
-- `--rename-branch` - Rename current branch
-- `--reset-configuration` - Reset configuration to default settings
-- `--revert-commits` - Revert recent commits
-- `--set-remote-uri` - Set or update remote URI
-- `--set-verbose-mode` - Set project-level Gittey verbose mode
-- `--update` - Update to latest version
-- `--update-current-branch` - Update current branch with remote trunk changes
-- `--verbose` - (Flag) Make all git commands visible when run
-- `-v`, `--version` - Display current version
+- `clone` - Clone remote repository
+- `commit` - Create a new branch using defined configuration
+    - Commit arguments pass through to git, e.g. `gittey commit --no-verify`
+- `commit-prefixes` - Display commit prefixes and descriptions
+- `configure-branch-annotations` - Create branch annotation prefixes
+- `configure-commit-annotations` - Create commit annotation prefixes
+- `delete-alias` - Delete a user-configured command alias
+- `delete-branch` - Delete a branch
+- `help`, `-h` - Display help info
+- `init` - Initialize Gittey configuration in your project
+- `init-repo` - Initialize git repository with custom main branch name
+- `list-remotes` - List remotes for local git repo
+- `merge-from-branch` - Merge another branch into current branch
+- `merge-to-branch` - Merge current branch into another branch
+- `merge-to-temp` - Merge current branch and another branch into a temp branch
+- `new-branch` - Create a new branch using defined configuration
+- `prune-branches` - Menued branch cleanup
+- `remove-collaborators` - Remove collaborators from list of team collaborators
+- `remove-remote` - Remove remote reference from local git repo
+- `rename-branch` - Rename current branch
+- `reset-configuration` - Reset configuration to default settings
+- `revert-commits` - Revert recent commits
+- `set-remote-uri` - Set or update remote URI
+- `set-verbose-mode` - Set project-level Gittey verbose mode
+- `update` - Update to latest version
+- `update-current-branch` - Update current branch with remote trunk changes
+- `verbose` - (Flag) Make all git commands visible when run
+- `version`, `-v` - Display current version
