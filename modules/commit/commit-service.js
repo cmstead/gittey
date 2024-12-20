@@ -52,7 +52,8 @@ function commitStagedFiles(args) {
 
 function createCommit(args) {
     return handleUnstagedFiles()
-        .then(() => commitStagedFiles(args));
+        .then(() => commitStagedFiles(args))
+        .catch((error) => console.log('Unable to complete file commit'));
 }
 
 module.exports = {

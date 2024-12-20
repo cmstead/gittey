@@ -63,7 +63,7 @@ new Promise(function (resolve) {
                 () => branchService.checkoutBranch(args, cliOptions));
 
             onCase({ ['commit']: true },
-                () => commitService.createCommit());
+                () => commitService.createCommit(args));
 
             onCase({ ['init']: true },
                 () => configureBranchPrefixes()
