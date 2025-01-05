@@ -169,7 +169,7 @@ module.exports = [
     },
     {
         name: 'passthrough',
-        description: 'passthrough',
+        description: 'Pass command through to git',
         type: Boolean
     },
 ]

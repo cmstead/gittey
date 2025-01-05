@@ -25,7 +25,7 @@ module.exports = (aliases = []) => {
         return option.name;
     });
 
-    if(!knownOptions.includes(args[0])) {
+    if(args.length > 0 && !knownOptions.includes(args[0])) {
         args.unshift('passthrough');
     }
 
