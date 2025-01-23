@@ -107,7 +107,13 @@ new Promise(function (resolve) {
                 () => branchService.mergeToTemp());
 
             onCase({ ['delete-branch']: true },
-                () => branchService.deleteBranch());
+                () => {
+                    if (cliOptions._unknown[0] !== '-m') {
+                        branchService.deleteBranch();
+                    } else {
+                        branchService.pruneBranches();
+                    }
+                });
 
             onCase({ ['prune-branches']: true },
                 () => branchService.pruneBranches());

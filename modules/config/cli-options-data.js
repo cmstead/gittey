@@ -42,7 +42,7 @@ module.exports = [
     },
     {
         name: "delete-branch",
-        description: "Delete a branch",
+        description: "Delete a branch; use -m flag to delete multiple branches",
         type: Boolean
     },
     {
