@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const { execGitCommand } = require('../shared/git-runner');
 
+inquirer.registerPrompt('search-list', require('inquirer-search-list'));
+
 function readBranchNames(remote = false) {
     const remoteFlag = remote ? ' -r' : '';
     const branchCommand = `git branch${remoteFlag}`;
@@ -30,7 +32,7 @@ function selectBranch(branchNames, message = "Select a branch") {
         {
             name: 'branchName',
             message: message,
-            type: 'list',
+            type: 'search-list',
             choices: branchNames
         }
     ])

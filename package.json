@@ -25,6 +25,7 @@
         "compare-versions": "^3.6.0",
         "console.table": "^0.10.0",
         "inquirer": "^7.3.3",
+        "inquirer-search-list": "^1.2.6",
         "matchlight": "^2.1.0",
         "npm-api": "^1.0.0"
     }

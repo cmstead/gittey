@@ -108,11 +108,7 @@ new Promise(function (resolve) {
 
             onCase({ ['delete-branch']: true },
                 () => {
-                    if (cliOptions._unknown[0] !== '-m') {
-                        branchService.deleteBranch();
-                    } else {
-                        branchService.pruneBranches();
-                    }
+                    branchService.deleteBranch();
                 });
 
             onCase({ ['prune-branches']: true },
